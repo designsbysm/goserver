@@ -1,0 +1,13 @@
+@url = /v1/session
+
+POST {{host}}{{url}}/login
+Content-Type: application/json
+
+{
+  "email": "{{email}}",
+  "password": "{{password}}"
+}
+###
+
+POST {{host}}{{url}}/logout
+Authorization: Bearer {{token}}
