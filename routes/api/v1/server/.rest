@@ -1,0 +1,8 @@
+# @url = /api/v1/session
+@url = /api/v1/server
+
+GET {{host}}{{url}}/
+###
+
+GET {{host}}{{url}}/
+Authorization: Bearer {{token}}

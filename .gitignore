@@ -2,5 +2,5 @@
 logs
 
 database/populate_db.go
-server.yaml
-server
+/server.yaml
+/server
