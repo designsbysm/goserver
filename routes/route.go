@@ -1,10 +1,8 @@
 package routes
 
 import (
-	"net/http"
 	"net/http/httputil"
 	"net/url"
-	"strings"
 
 	"github.com/spf13/viper"
 
@@ -20,23 +18,17 @@ func AddRoute(r *gin.Engine) {
 		ginmiddleware.Error(),
 	)
 
+	// setup frontend client
+	client := viper.GetString("client.server")
+	u, err := url.Parse(client)
+	if err != nil {
+		panic(err)
+	}
+	proxy := httputil.NewSingleHostReverseProxy(u)
+
 	group := r.Group("")
 	{
 		api.AddRoute(group)
-		r.NoRoute(ServeClient)
-	}
-}
-
-func ServeClient(c *gin.Context) {
-	client := viper.GetString("client.server")
-	u, err := url.Parse(client)
-
-	if err != nil {
-		c.String(http.StatusBadRequest, err.Error())
-	} else if strings.HasPrefix(c.Request.RequestURI, "/api") {
-		// do nothing
-	} else {
-		proxy := httputil.NewSingleHostReverseProxy(u)
-		proxy.ServeHTTP(c.Writer, c.Request)
+		r.NoRoute(serveClient(proxy))
 	}
 }
