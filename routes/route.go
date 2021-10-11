@@ -4,12 +4,12 @@ import (
 	"net/http"
 	"net/http/httputil"
 	"net/url"
-	"os"
 	"strings"
 
-	"github.com/designsbysm/goserver/routes/session"
+	"github.com/spf13/viper"
 
 	"github.com/designsbysm/ginmiddleware"
+	"github.com/designsbysm/goserver/routes/api"
 	"github.com/gin-gonic/gin"
 )
 
@@ -20,24 +20,21 @@ func AddRoute(r *gin.Engine) {
 		ginmiddleware.Error(),
 	)
 
-	group := r.Group("/v1")
+	group := r.Group("")
 	{
-		session.AddRoute(group)
+		api.AddRoute(group)
+		r.NoRoute(ServeClient)
 	}
-
-	r.NoRoute(ServeClient)
 }
 
 func ServeClient(c *gin.Context) {
-	client := os.Getenv("CLIENT_SERVER")
+	client := viper.GetString("client.server")
 	u, err := url.Parse(client)
 
 	if err != nil {
 		c.String(http.StatusBadRequest, err.Error())
-	} else if strings.HasPrefix(c.Request.RequestURI, "/v1") {
+	} else if strings.HasPrefix(c.Request.RequestURI, "/api") {
 		// do nothing
-	} else if c.Request.URL.String() == "/favicon.ico" {
-		c.Status(http.StatusNoContent)
 	} else {
 		proxy := httputil.NewSingleHostReverseProxy(u)
 		proxy.ServeHTTP(c.Writer, c.Request)

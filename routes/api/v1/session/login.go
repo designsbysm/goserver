@@ -4,8 +4,8 @@ import (
 	"net/http"
 
 	"github.com/designsbysm/goserver/database"
-	role "github.com/designsbysm/goserver/routes/role/orm"
-	"github.com/designsbysm/goserver/routes/session/orm"
+	role "github.com/designsbysm/goserver/routes/api/v1/role/orm"
+	"github.com/designsbysm/goserver/routes/api/v1/session/orm"
 	"github.com/designsbysm/goserver/utilities"
 
 	"github.com/gin-gonic/gin"
