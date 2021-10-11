@@ -16,7 +16,7 @@ func login(c *gin.Context) {
 
 	err := c.BindJSON(&query)
 	if err != nil {
-		c.AbortWithError(http.StatusInternalServerError, err)
+		c.Status(http.StatusUnauthorized)
 		return
 	}
 

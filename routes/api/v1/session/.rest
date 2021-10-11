@@ -1,4 +1,4 @@
-@url = /v1/session
+@url = /api/v1/session
 
 POST {{host}}{{url}}/login
 Content-Type: application/json
