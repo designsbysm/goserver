@@ -1,7 +1,7 @@
 package v1
 
 import (
-	"github.com/designsbysm/goserver/routes/api/v1/session"
+	"github.com/designsbysm/server-go/routes/api/v1/session"
 	"github.com/gin-gonic/gin"
 )
 

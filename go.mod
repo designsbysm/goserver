@@ -1,4 +1,4 @@
-module github.com/designsbysm/goserver
+module github.com/designsbysm/server-go
 
 go 1.17
 

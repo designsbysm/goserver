@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/designsbysm/goserver/database"
-	"github.com/designsbysm/goserver/routes"
+	"github.com/designsbysm/server-go/database"
+	"github.com/designsbysm/server-go/routes"
 
 	"github.com/designsbysm/logger/v2"
 	"github.com/designsbysm/loggerfile"

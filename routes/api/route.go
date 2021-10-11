@@ -1,7 +1,7 @@
 package api
 
 import (
-	v1 "github.com/designsbysm/goserver/routes/api/v1"
+	v1 "github.com/designsbysm/server-go/routes/api/v1"
 	"github.com/gin-gonic/gin"
 )
 

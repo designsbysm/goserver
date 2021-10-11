@@ -3,10 +3,10 @@ package session
 import (
 	"net/http"
 
-	"github.com/designsbysm/goserver/database"
-	role "github.com/designsbysm/goserver/routes/api/v1/role/orm"
-	"github.com/designsbysm/goserver/routes/api/v1/session/orm"
-	"github.com/designsbysm/goserver/utilities"
+	"github.com/designsbysm/server-go/database"
+	role "github.com/designsbysm/server-go/routes/api/v1/role/orm"
+	"github.com/designsbysm/server-go/routes/api/v1/session/orm"
+	"github.com/designsbysm/server-go/utilities"
 
 	"github.com/gin-gonic/gin"
 )

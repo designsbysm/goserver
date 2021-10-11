@@ -1,7 +1,7 @@
 package orm
 
 import (
-	"github.com/designsbysm/goserver/database"
+	"github.com/designsbysm/server-go/database"
 )
 
 func ReadUser(query database.User) (database.User, error) {

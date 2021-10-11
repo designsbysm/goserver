@@ -9,7 +9,7 @@ import (
 	"github.com/spf13/viper"
 
 	"github.com/designsbysm/ginmiddleware"
-	"github.com/designsbysm/goserver/routes/api"
+	"github.com/designsbysm/server-go/routes/api"
 	"github.com/gin-gonic/gin"
 )
 

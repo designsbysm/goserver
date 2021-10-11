@@ -1,7 +1,7 @@
 package session
 
 import (
-	"github.com/designsbysm/goserver/middleware"
+	"github.com/designsbysm/server-go/middleware"
 	"github.com/gin-gonic/gin"
 )
 

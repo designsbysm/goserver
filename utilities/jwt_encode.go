@@ -3,7 +3,7 @@ package utilities
 import (
 	"time"
 
-	"github.com/designsbysm/goserver/database"
+	"github.com/designsbysm/server-go/database"
 	"github.com/dgrijalva/jwt-go"
 	"github.com/spf13/viper"
 )

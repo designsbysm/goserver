@@ -4,8 +4,8 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/designsbysm/goserver/database"
-	"github.com/designsbysm/goserver/utilities"
+	"github.com/designsbysm/server-go/database"
+	"github.com/designsbysm/server-go/utilities"
 	"github.com/gin-gonic/gin"
 )
 
