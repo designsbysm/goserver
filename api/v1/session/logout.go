@@ -4,8 +4,8 @@ import (
 	"errors"
 	"net/http"
 
+	"github.com/designsbysm/server-go/api/v1/session/orm"
 	"github.com/designsbysm/server-go/database"
-	"github.com/designsbysm/server-go/routes/api/v1/session/orm"
 	"github.com/gin-gonic/gin"
 )
 

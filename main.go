@@ -4,8 +4,9 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/designsbysm/server-go/api"
+	"github.com/designsbysm/server-go/client"
 	"github.com/designsbysm/server-go/database"
-	"github.com/designsbysm/server-go/routes"
 
 	"github.com/designsbysm/logger/v2"
 	"github.com/designsbysm/loggerfile"
@@ -45,7 +46,9 @@ func main() {
 
 	// run the server
 	router := gin.New()
-	routes.AddRoute(router)
+	api.AddRoute(router)
+	client.AddRoute(router)
+
 	port := viper.GetString("server.port")
 	protocol := viper.GetString("server.protocol")
 

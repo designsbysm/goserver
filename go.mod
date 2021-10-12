@@ -2,7 +2,7 @@ module github.com/designsbysm/server-go
 
 go 1.17
 
-// replace github.com/designsbysm/ginmiddleware => /Users/developer/Development/goserver/middleware
+// replace github.com/designsbysm/ginmiddleware => /Users/developer/Development/go-modules/gin-middleware
 // replace github.com/designsbysm/logger/v2 => /Users/developer/Development/goserver/logger
 // replace github.com/designsbysm/loggerfile => /Users/developer/Development/goserver/loggerfile
 
