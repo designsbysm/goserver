@@ -37,7 +37,7 @@ func Connect() error {
 	}
 
 	DB.AutoMigrate(&Role{}, &User{})
-	// populateDB()
+	populateDB()
 
 	return err
 }

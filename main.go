@@ -18,10 +18,6 @@ func main() {
 		panic(err)
 	}
 
-	if err := database.Connect(); err != nil {
-		panic(err)
-	}
-
 	// setup logger
 	logger.New(
 		os.Stdout,
@@ -41,6 +37,11 @@ func main() {
 		viper.GetBool("logger.file.title"),
 		viper.GetString("logger.file.timestamp"),
 	)
+
+	// setup db
+	if err := database.Connect(); err != nil {
+		panic(err)
+	}
 
 	// run the server
 	router := gin.New()
