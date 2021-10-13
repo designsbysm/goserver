@@ -7,7 +7,7 @@ import (
 	"gorm.io/gorm"
 )
 
-var errorMissingPassword = errors.New("model error: missing password")
+var errorPasswordRequired = errors.New("User error: password is required")
 
 type User struct {
 	gorm.Model
@@ -26,7 +26,7 @@ func (u *User) BeforeSave(tx *gorm.DB) error {
 		u.Password = u.PasswordHash
 		return nil
 	} else if u.Password == "" {
-		return errorMissingPassword
+		return errorPasswordRequired
 	}
 
 	hash, err := bcrypt.GenerateFromPassword([]byte(u.Password), bcrypt.DefaultCost)
@@ -41,7 +41,7 @@ func (u *User) BeforeSave(tx *gorm.DB) error {
 
 func (u *User) ValidatePassword(password string) error {
 	if password == "" {
-		return errorMissingPassword
+		return errorPasswordRequired
 	}
 
 	return bcrypt.CompareHashAndPassword([]byte(u.Password), []byte(password))
