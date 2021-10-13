@@ -3,12 +3,14 @@ module github.com/designsbysm/server-go
 go 1.17
 
 // replace github.com/designsbysm/ginmiddleware => /Users/developer/Development/go-modules/gin-middleware
-// replace github.com/designsbysm/logger/v2 => /Users/developer/Development/goserver/logger
-// replace github.com/designsbysm/loggerfile => /Users/developer/Development/goserver/loggerfile
+// replace github.com/designsbysm/logger/v2 => /Users/developer/Development/go-modules/logger
+// replace github.com/designsbysm/loggerfile => /Users/developer/Development/go-modules/logger-file
+// replace github.com/designsbysm/loggeremail => /Users/developer/Development/go-modules/logger-email
 
 require (
-	github.com/designsbysm/ginmiddleware v1.0.2
-	github.com/designsbysm/logger/v2 v2.4.1
+	github.com/designsbysm/ginmiddleware v1.1.0
+	github.com/designsbysm/logger/v2 v2.5.0
+	github.com/designsbysm/loggeremail v1.2.0
 	github.com/designsbysm/loggerfile v1.1.1
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/gin-gonic/gin v1.7.4

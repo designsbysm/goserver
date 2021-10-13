@@ -74,10 +74,12 @@ github.com/creack/pty v1.1.9/go.mod h1:oKZEueFk5CKHvIhNR5MUki03XCEU+Q6VDXinZuGJ3
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
-github.com/designsbysm/ginmiddleware v1.0.2 h1:qd5B5wPDX3C7sdU1nf9QwfIrUiY+hIyS4gvAKLh0Kpc=
-github.com/designsbysm/ginmiddleware v1.0.2/go.mod h1:F5AInPJlFeDnAwyitSXiVw/+4BOXABo0wa10uR+pxtc=
-github.com/designsbysm/logger/v2 v2.4.1 h1:+UjQrRu5YagE2ePD/6KGMEMdiwiMml+Srki5cz+4SyE=
-github.com/designsbysm/logger/v2 v2.4.1/go.mod h1:+0/YNEgV08JDXDzqyV4ZsLYQpCc4+Re3s9TMefB/AFs=
+github.com/designsbysm/ginmiddleware v1.1.0 h1:0H8S3784I+9J+D3U1Q+r6818TKdkqls/19Qjqt2SJ9s=
+github.com/designsbysm/ginmiddleware v1.1.0/go.mod h1:PtE/FI6kESNoMue5Kk13lv9XlqDW6ro4WozmSGmgW04=
+github.com/designsbysm/logger/v2 v2.5.0 h1:+k3T0vC6U8u2BTzWL6Ih742+GSmN5VrL3CBI3CvPXgY=
+github.com/designsbysm/logger/v2 v2.5.0/go.mod h1:+0/YNEgV08JDXDzqyV4ZsLYQpCc4+Re3s9TMefB/AFs=
+github.com/designsbysm/loggeremail v1.2.0 h1:3ePYoAyrb/uM2uYBHd/QehubLFZM5MwQD1g7EZ9nnDc=
+github.com/designsbysm/loggeremail v1.2.0/go.mod h1:PRNJiflzqJrvlLN+KBd668Lle607GJ7+o7bMi6TSlL8=
 github.com/designsbysm/loggerfile v1.1.1 h1:0sMMkSUecfKQGkGvLXSUMPlGhIW5pXB33MP3FIllOVg=
 github.com/designsbysm/loggerfile v1.1.1/go.mod h1:1YwES+h/mNL8/rJxgSTL+JFsmpHAWWW7naezYjpsPYQ=
 github.com/dgrijalva/jwt-go v3.2.0+incompatible h1:7qlOGliEKZXTDg6OTjfoBKDXWrumCAMpl/TFQ4/5kLM=
