@@ -18,9 +18,3 @@ func AddRoute(r *gin.Engine) {
 
 	r.NoRoute(serve(proxy))
 }
-
-func serve(proxy *httputil.ReverseProxy) gin.HandlerFunc {
-	return func(c *gin.Context) {
-		proxy.ServeHTTP(c.Writer, c.Request)
-	}
-}

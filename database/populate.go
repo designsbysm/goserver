@@ -5,16 +5,6 @@ import (
 	"github.com/spf13/viper"
 )
 
-func createRecord(data interface{}, query interface{}) {
-	err := DB.FirstOrCreate(data, query).Error
-	if err != nil {
-		logger.Write(
-			logger.LevelError,
-			err,
-		)
-	}
-}
-
 func populateDB() {
 	roleAdmin := Role{
 		Name: "admin",
@@ -43,4 +33,11 @@ func populateDB() {
 		RoleID:       roleUser.ID,
 	}
 	createRecord(&userUser, userUser)
+}
+
+func createRecord(data interface{}, query interface{}) {
+	err := DB.FirstOrCreate(data, query).Error
+	if err != nil {
+		logger.Error(err)
+	}
 }
