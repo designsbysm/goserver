@@ -1,4 +1,4 @@
-package utilities
+package jwt
 
 import (
 	"time"
@@ -8,7 +8,7 @@ import (
 	"github.com/spf13/viper"
 )
 
-func JWTEncode(session database.Session) (string, error) {
+func Encode(session database.Session) (string, error) {
 	secretKey := []byte(viper.GetString("server.jwt.secret"))
 
 	defaulDuration := 8

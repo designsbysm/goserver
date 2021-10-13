@@ -6,7 +6,7 @@ import (
 	role "github.com/designsbysm/server-go/api/v1/role/orm"
 	"github.com/designsbysm/server-go/api/v1/session/orm"
 	"github.com/designsbysm/server-go/database"
-	"github.com/designsbysm/server-go/utilities"
+	"github.com/designsbysm/server-go/jwt"
 
 	"github.com/gin-gonic/gin"
 )
@@ -53,7 +53,7 @@ func login(c *gin.Context) {
 		Role:      role.Name,
 	}
 
-	token, err := utilities.JWTEncode(session)
+	token, err := jwt.Encode(session)
 	if err != nil {
 		c.AbortWithError(http.StatusInternalServerError, err)
 		return

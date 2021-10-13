@@ -5,7 +5,7 @@ import (
 	"strings"
 
 	"github.com/designsbysm/server-go/database"
-	"github.com/designsbysm/server-go/utilities"
+	"github.com/designsbysm/server-go/jwt"
 	"github.com/gin-gonic/gin"
 )
 
@@ -14,7 +14,7 @@ func AuthorizeJWT() gin.HandlerFunc {
 		header := c.GetHeader("Authorization")
 		token := strings.TrimPrefix(header, "Bearer ")
 
-		claims, err := utilities.JWTDecode(token)
+		claims, err := jwt.Decode(token)
 		if err != nil {
 			c.AbortWithStatus(http.StatusUnauthorized)
 			return
