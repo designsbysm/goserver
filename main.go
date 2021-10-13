@@ -1,17 +1,8 @@
+// TODO: add documentation
 package main
 
 import (
-	"fmt"
-	"os"
-
-	"github.com/designsbysm/server-go/api"
-	"github.com/designsbysm/server-go/client"
 	"github.com/designsbysm/server-go/database"
-
-	"github.com/designsbysm/logger/v2"
-	"github.com/designsbysm/loggerfile"
-	"github.com/gin-gonic/gin"
-	"github.com/spf13/viper"
 )
 
 func main() {
@@ -19,57 +10,15 @@ func main() {
 		panic(err)
 	}
 
-	// setup logger
-	logger.New(
-		os.Stdout,
-		viper.GetInt("logger.cli.level"),
-		viper.GetBool("logger.cli.colorful"),
-		viper.GetBool("logger.cli.title"),
-		viper.GetString("logger.cli.timestamp"),
-	)
+	if err := loggers(); err != nil {
+		panic(err)
+	}
 
-	f := loggerfile.New(
-		viper.GetString("logger.file.path"),
-	)
-	logger.New(
-		f,
-		viper.GetInt("logger.file.level"),
-		false,
-		viper.GetBool("logger.file.title"),
-		viper.GetString("logger.file.timestamp"),
-	)
-
-	// setup db
 	if err := database.Connect(); err != nil {
 		panic(err)
 	}
 
-	// run the server
-	router := gin.New()
-	api.AddRoute(router)
-	client.AddRoute(router)
-
-	port := viper.GetString("server.port")
-	protocol := viper.GetString("server.protocol")
-
-	if viper.GetBool("gin.release") {
-		logger.Write(
-			logger.LevelInfo,
-			fmt.Sprintf("serving %s over %s", protocol, port),
-		)
-	}
-
-	if protocol == "HTTPS" {
-		if err := router.RunTLS(
-			port,
-			viper.GetString("server.https.cert"),
-			viper.GetString("server.https.key"),
-		); err != nil {
-			panic(err)
-		}
-	}
-
-	if err := router.Run(port); err != nil {
+	if err := server(); err != nil {
 		panic(err)
 	}
 }
