@@ -15,12 +15,12 @@ var DB *gorm.DB
 
 func Connect() error {
 	customLogger := logger.New(
-		log.New(os.Stdout, "\r\n", log.LstdFlags),
+		log.New(os.Stdout, "\r\n", 0),
 		logger.Config{
 			Colorful:                  true,
 			IgnoreRecordNotFoundError: true,
 			LogLevel:                  logger.LogLevel(viper.GetInt("gorm.level")),
-			SlowThreshold:             time.Second,
+			SlowThreshold:             200 * time.Millisecond,
 		},
 	)
 
