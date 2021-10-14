@@ -8,6 +8,7 @@ import (
 func populateDB() {
 	roleAdmin := Role{
 		Name:    "admin",
+		IsAdmin: true,
 	}
 	createRecord(&roleAdmin, roleAdmin)
 
@@ -22,6 +23,7 @@ func populateDB() {
 
 	roleUser := Role{
 		Name:    "user",
+		IsAdmin: true,
 	}
 	createRecord(&roleUser, roleUser)
 

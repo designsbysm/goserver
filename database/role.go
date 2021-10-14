@@ -6,5 +6,6 @@ import (
 
 type Role struct {
 	gorm.Model
-	Name string `gorm:"uniqueIndex;not null"`
+	Name    string `gorm:"uniqueIndex;not null"`
+	IsAdmin bool
 }
