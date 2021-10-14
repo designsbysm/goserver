@@ -1,7 +1,7 @@
-package database
+package jwt
 
 type Session struct {
-	ID        int    `json:"id"`
+	ID        uint   `json:"id"`
 	FirstName string `json:"firstName"`
 	LastName  string `json:"lastName"`
 	Role      string `json:"role"`

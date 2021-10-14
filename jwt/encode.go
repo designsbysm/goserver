@@ -8,11 +8,17 @@ import (
 	"github.com/spf13/viper"
 )
 
-func Encode(session database.Session) (string, error) {
+func Encode(user *database.User) (Session, error) {
+	session := Session{
+		ID:        user.ID,
+		FirstName: user.FirstName,
+		LastName:  user.LastName,
+		Role:      user.Role.Name,
+	}
 	secretKey := []byte(viper.GetString("server.jwt.secret"))
 
 	defaulDuration := 8
-	if session.Role == "admin" {
+	if user.Role.IsAdmin {
 		defaulDuration = 24 * 365
 	}
 
@@ -24,5 +30,13 @@ func Encode(session database.Session) (string, error) {
 		"exp":  expiration,
 	})
 
-	return token.SignedString(secretKey)
+	tokenString, err := token.SignedString(secretKey)
+	if err != nil {
+		return session, err
+	}
+
+	user.AuthToken = tokenString
+	session.Token = tokenString
+
+	return session, nil
 }

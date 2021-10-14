@@ -43,21 +43,11 @@ func login(c *gin.Context) {
 		return
 	}
 
-	session := database.Session{
-		ID:        int(user.ID),
-		FirstName: user.FirstName,
-		LastName:  user.LastName,
-		Role:      user.Role.Name,
-	}
-
-	token, err := jwt.Encode(session)
+	session, err := jwt.Encode(&user)
 	if err != nil {
 		c.AbortWithError(http.StatusInternalServerError, err)
 		return
 	}
-
-	session.Token = token
-	user.AuthToken = token
 
 	err = user.Update()
 	if err != nil {
