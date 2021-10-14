@@ -3,46 +3,43 @@ package session
 import (
 	"net/http"
 
-	role "github.com/designsbysm/server-go/api/v1/role/orm"
-	"github.com/designsbysm/server-go/api/v1/session/orm"
 	"github.com/designsbysm/server-go/database"
 	"github.com/designsbysm/server-go/jwt"
 
 	"github.com/gin-gonic/gin"
 )
 
+type request struct {
+	Email    string
+	Password string
+}
+
 func login(c *gin.Context) {
-	var query database.User
-
-	err := c.BindJSON(&query)
+	request := request{}
+	err := c.BindJSON(&request)
 	if err != nil {
 		c.Status(http.StatusUnauthorized)
 		return
 	}
 
-	if query.Email == "" || query.Password == "" {
+	if request.Email == "" || request.Password == "" {
 		c.Status(http.StatusUnauthorized)
 		return
 	}
 
-	password := query.Password
-	query.Password = ""
-
-	user, err := orm.ReadUser(query)
+	user := database.User{
+		Email:       request.Email,
+		RawPassword: request.Password,
+	}
+	err = user.ReadOne(database.PreloadRole)
 	if err != nil {
 		c.Status(http.StatusUnauthorized)
 		return
 	}
 
-	err = user.ValidatePassword(password)
+	err = user.ValidatePassword()
 	if err != nil {
 		c.Status(http.StatusUnauthorized)
-		return
-	}
-
-	role, err := role.ReadRole(int(user.RoleID))
-	if err != nil {
-		c.AbortWithError(http.StatusInternalServerError, err)
 		return
 	}
 
@@ -50,7 +47,7 @@ func login(c *gin.Context) {
 		ID:        int(user.ID),
 		FirstName: user.FirstName,
 		LastName:  user.LastName,
-		Role:      role.Name,
+		Role:      user.Role.Name,
 	}
 
 	token, err := jwt.Encode(session)
@@ -60,8 +57,9 @@ func login(c *gin.Context) {
 	}
 
 	session.Token = token
+	user.AuthToken = token
 
-	err = orm.UpdateUser(user, session.Token)
+	err = user.Update()
 	if err != nil {
 		c.AbortWithError(http.StatusInternalServerError, err)
 		return

@@ -4,7 +4,6 @@ import (
 	"errors"
 	"net/http"
 
-	"github.com/designsbysm/server-go/api/v1/session/orm"
 	"github.com/designsbysm/server-go/database"
 	"github.com/gin-gonic/gin"
 )
@@ -15,9 +14,11 @@ func logout(c *gin.Context) {
 		c.AbortWithError(http.StatusInternalServerError, errors.New("missing user data"))
 		return
 	}
-	user := data.(database.User)
 
-	err := orm.UpdateUser(user, "")
+	user := data.(database.User)
+	user.AuthToken = ""
+
+	err := user.Update()
 	if err != nil {
 		c.AbortWithError(http.StatusInternalServerError, err)
 		return

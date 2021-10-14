@@ -1,35 +1,30 @@
 package database
 
 import (
-	"errors"
-
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
 )
 
-var errorPasswordRequired = errors.New("User error: password is required")
-
 type User struct {
 	gorm.Model
-	FirstName    string `gorm:"not null"`
-	LastName     string `gorm:"not null"`
-	Email        string `gorm:"uniqueIndex;not null"`
-	Password     string `gorm:"not null"`
-	PasswordHash string `gorm:"-"`
-	AuthToken    string
-	RoleID       uint
-	Role         Role `gorm:"constraint:OnDelete:SET NULL;"`
+	FirstName   string `gorm:"not null"`
+	LastName    string `gorm:"not null"`
+	Email       string `gorm:"uniqueIndex;not null"`
+	Password    string `gorm:"not null"`
+	AuthToken   string
+	RoleID      uint
+	Role        Role   `gorm:"constraint:OnDelete:SET NULL;"`
+	RawPassword string `gorm:"-"`
 }
 
 func (u *User) BeforeSave(tx *gorm.DB) error {
-	if u.PasswordHash != "" {
-		u.Password = u.PasswordHash
-		return nil
-	} else if u.Password == "" {
+	if u.Password == "" && u.RawPassword == "" {
 		return errorPasswordRequired
+	} else if u.Password != "" {
+		return nil
 	}
 
-	hash, err := bcrypt.GenerateFromPassword([]byte(u.Password), bcrypt.DefaultCost)
+	hash, err := bcrypt.GenerateFromPassword([]byte(u.RawPassword), bcrypt.DefaultCost)
 	if err != nil {
 		return err
 	}
@@ -39,10 +34,24 @@ func (u *User) BeforeSave(tx *gorm.DB) error {
 	return nil
 }
 
-func (u *User) ValidatePassword(password string) error {
-	if password == "" {
+func (u *User) ReadOne(flags int) error {
+	db := DB
+
+	if flags&PreloadRole != 0 {
+		db = DB.Preload("Role")
+	}
+
+	return db.First(&u, u).Error
+}
+
+func (u *User) Update() error {
+	return DB.Save(&u).Error
+}
+
+func (u *User) ValidatePassword() error {
+	if u.RawPassword == "" {
 		return errorPasswordRequired
 	}
 
-	return bcrypt.CompareHashAndPassword([]byte(u.Password), []byte(password))
+	return bcrypt.CompareHashAndPassword([]byte(u.Password), []byte(u.RawPassword))
 }
