@@ -74,10 +74,11 @@ github.com/creack/pty v1.1.9/go.mod h1:oKZEueFk5CKHvIhNR5MUki03XCEU+Q6VDXinZuGJ3
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
-github.com/designsbysm/ginmiddleware v1.1.0 h1:0H8S3784I+9J+D3U1Q+r6818TKdkqls/19Qjqt2SJ9s=
-github.com/designsbysm/ginmiddleware v1.1.0/go.mod h1:PtE/FI6kESNoMue5Kk13lv9XlqDW6ro4WozmSGmgW04=
-github.com/designsbysm/logger/v2 v2.5.0 h1:+k3T0vC6U8u2BTzWL6Ih742+GSmN5VrL3CBI3CvPXgY=
+github.com/designsbysm/ginmiddleware v1.1.1 h1:byMq4jsllAxdwLk45PyjJ8P5O8zUDmdmCFcxrdCi+UA=
+github.com/designsbysm/ginmiddleware v1.1.1/go.mod h1:PtE/FI6kESNoMue5Kk13lv9XlqDW6ro4WozmSGmgW04=
 github.com/designsbysm/logger/v2 v2.5.0/go.mod h1:+0/YNEgV08JDXDzqyV4ZsLYQpCc4+Re3s9TMefB/AFs=
+github.com/designsbysm/logger/v2 v2.5.2 h1:eyewV4qdmMhhA4ognDHL3oKB3PzNbfJ5XPi9TrpAZbU=
+github.com/designsbysm/logger/v2 v2.5.2/go.mod h1:+0/YNEgV08JDXDzqyV4ZsLYQpCc4+Re3s9TMefB/AFs=
 github.com/designsbysm/loggeremail v1.2.0 h1:3ePYoAyrb/uM2uYBHd/QehubLFZM5MwQD1g7EZ9nnDc=
 github.com/designsbysm/loggeremail v1.2.0/go.mod h1:PRNJiflzqJrvlLN+KBd668Lle607GJ7+o7bMi6TSlL8=
 github.com/designsbysm/loggerfile v1.1.1 h1:0sMMkSUecfKQGkGvLXSUMPlGhIW5pXB33MP3FIllOVg=
@@ -333,8 +334,9 @@ github.com/pascaldekloe/goe v0.0.0-20180627143212-57f6aae5913c/go.mod h1:lzWF7FI
 github.com/pelletier/go-toml v1.9.4 h1:tjENF6MfZAg8e4ZmZTeWaWiT2vXtsoO6+iuOjFhECwM=
 github.com/pelletier/go-toml v1.9.4/go.mod h1:u1nR/EPcESfeI/szUZKdtJ0xRNbUoANCkoOuaOx1Y+c=
 github.com/pkg/diff v0.0.0-20210226163009-20ebb0f2a09e/go.mod h1:pJLUxLENpZxwdsKMEsNbx1VGcRFpLqf3715MtcvvzbA=
-github.com/pkg/errors v0.8.1 h1:iURUrRGxPUNPdy5/HRSm+Yj6okJ6UtLINN0Q9M4+h3I=
 github.com/pkg/errors v0.8.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=
+github.com/pkg/errors v0.9.1 h1:FEBLx1zS214owpjy7qsBeixbURkuhQAwrK5UwLGTwt4=
+github.com/pkg/errors v0.9.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=
 github.com/pkg/sftp v1.10.1/go.mod h1:lYOWFsE0bwd1+KfKJaKeuokY15vzFx25BLbzYYoAxZI=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
@@ -591,8 +593,9 @@ golang.org/x/sys v0.0.0-20210616094352-59db8d763f22/go.mod h1:oPkhp1MJrh7nUepCBc
 golang.org/x/sys v0.0.0-20210630005230-0f9fa26af87c/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=
 golang.org/x/sys v0.0.0-20210806184541-e5e7981a1069/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=
 golang.org/x/sys v0.0.0-20210823070655-63515b42dcdf/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=
-golang.org/x/sys v0.0.0-20211007075335-d3039528d8ac h1:oN6lz7iLW/YC7un8pq+9bOLyXrprv2+DKfkJY+2LJJw=
 golang.org/x/sys v0.0.0-20211007075335-d3039528d8ac/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=
+golang.org/x/sys v0.0.0-20211013075003-97ac67df715c h1:taxlMj0D/1sOAuv/CbSD+MMDof2vbyPTqz5FNYKpXt8=
+golang.org/x/sys v0.0.0-20211013075003-97ac67df715c/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=
 golang.org/x/term v0.0.0-20201117132131-f5c789dd3221/go.mod h1:Nr5EML6q2oocZ2LXRh80K7BxOlk5/8JxuGnuhpl+muw=
 golang.org/x/term v0.0.0-20201126162022-7de9c90e9dd1/go.mod h1:bj7SfCRtBDWHUb9snDiAeCFNEtKQo2Wmx5Cou7ajbmo=
 golang.org/x/text v0.0.0-20170915032832-14c0d48ead0c/go.mod h1:NqM8EUOU14njkJ3fqMW+pc6Ldnwhi/IjpwHt7yyuwOQ=

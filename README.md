@@ -4,6 +4,8 @@ HTTP server prototype written in Go.
 
 ## Sample ./server.yaml Config
 
+// TODO: update config example
+
 ```
 server:
   port: :5000
@@ -24,12 +26,9 @@ gorm:
 logger:
   cli:
     level: 9
-    colorful: true
-    title: false
     timestamp: "[15:04:05]"
   file:
     level: 9
-    title: false
     timestamp: "[15:04:05]"
     path: logs/2006-01-02.log
 ```
