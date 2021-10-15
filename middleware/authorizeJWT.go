@@ -20,14 +20,11 @@ func AuthorizeJWT() gin.HandlerFunc {
 			return
 		}
 
-		var user database.User
-		var query database.User
-
-		query.ID = uint(claims["id"].(float64))
-		query.AuthToken = token
-
-		err = database.DB.Joins("Role").First(&user, query).Error
-		if err != nil {
+		user := database.User{
+			AuthToken: token,
+		}
+		user.ID = uint(claims["id"].(float64))
+		if err = user.ReadOne(database.PreloadRole); err != nil {
 			c.AbortWithStatus(http.StatusUnauthorized)
 			return
 		}
