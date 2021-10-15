@@ -34,7 +34,11 @@ func (u *User) BeforeSave(tx *gorm.DB) error {
 	return nil
 }
 
-func (u *User) ReadOne(flags int) error {
+func (u *User) Create() error {
+	return DB.FirstOrCreate(&u, u).Error
+}
+
+func (u *User) Read(flags int) error {
 	db := DB
 
 	if flags&PreloadRole != 0 {

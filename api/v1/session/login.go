@@ -31,7 +31,7 @@ func login(c *gin.Context) {
 		Email:       request.Email,
 		RawPassword: request.Password,
 	}
-	err = user.ReadOne(database.PreloadRole)
+	err = user.Read(database.PreloadRole)
 	if err != nil {
 		c.Status(http.StatusUnauthorized)
 		return
