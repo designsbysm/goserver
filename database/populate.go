@@ -6,40 +6,55 @@ import (
 )
 
 func populateDB() {
-	roleAdmin := Role{
+	setting := Setting{
+		Key: "database",
+	}
+	if err := setting.Read(); err != nil {
+		logger.Error(err)
+	} else if setting.GetBool("populated") {
+		return
+	}
+
+	role := Role{
 		Name:    "admin",
 		IsAdmin: true,
 	}
-	createRecord(&roleAdmin, roleAdmin)
+	if err := role.Create(); err != nil {
+		logger.Error(err)
+	}
 
-	userAdmin := User{
+	user := User{
 		FirstName: "Scott",
 		LastName:  "Matthews",
-		Email:        "scott@designsbysm.com",
+		Email:     "scott@designsbysm.com",
 		Password:  viper.GetString("db.user.password"),
-		RoleID:    roleAdmin.ID,
+		RoleID:    role.ID,
 	}
-	createRecord(&userAdmin, userAdmin)
+	if err := user.Create(); err != nil {
+		logger.Error(err)
+	}
 
-	roleUser := Role{
+	role = Role{
 		Name:    "user",
-		IsAdmin: true,
+		IsAdmin: false,
 	}
-	createRecord(&roleUser, roleUser)
+	if err := role.Create(); err != nil {
+		logger.Error(err)
+	}
 
-	userUser := User{
+	user = User{
 		FirstName: "Bob",
 		LastName:  "Smith",
 		Email:     "bob@designsbysm.com",
 		Password:  viper.GetString("db.user.password"),
-		RoleID:    roleUser.ID,
+		RoleID:    role.ID,
 	}
-	createRecord(&userUser, userUser)
-}
+	if err := user.Create(); err != nil {
+		logger.Error(err)
+	}
 
-func createRecord(data interface{}, query interface{}) {
-	err := DB.FirstOrCreate(data, query).Error
-	if err != nil {
+	setting.Value["populated"] = true
+	if err := setting.Upsert(); err != nil {
 		logger.Error(err)
 	}
 }
