@@ -16,6 +16,7 @@ require (
 	github.com/gin-gonic/gin v1.7.4
 	github.com/spf13/viper v1.9.0
 	golang.org/x/crypto v0.0.0-20210921155107-089bfa567519
+	gorm.io/datatypes v1.0.2
 	gorm.io/driver/postgres v1.1.2
 	gorm.io/gorm v1.21.16
 )

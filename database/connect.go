@@ -23,6 +23,7 @@ func Connect() (err error) {
 
 	DB.AutoMigrate(
 		&Role{},
+		&Setting{},
 		&User{},
 	)
 	populateDB()
