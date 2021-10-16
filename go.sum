@@ -104,8 +104,11 @@ github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/denisenkom/go-mssqldb v0.10.0 h1:QykgLZBorFE95+gO3u9esLd0BmbvpWp0/waNNZfHBM8=
 github.com/denisenkom/go-mssqldb v0.10.0/go.mod h1:xbL0rPBG9cCiLr28tMa8zpbdarY27NDyej4t/EjAShU=
-github.com/designsbysm/ginmiddleware v1.1.1 h1:byMq4jsllAxdwLk45PyjJ8P5O8zUDmdmCFcxrdCi+UA=
-github.com/designsbysm/ginmiddleware v1.1.1/go.mod h1:PtE/FI6kESNoMue5Kk13lv9XlqDW6ro4WozmSGmgW04=
+github.com/designsbysm/gibson v1.2.0 h1:sxTNSIXmUOcNzB5JbW0PSblnF33BMyv6X7/ifvwSDDo=
+github.com/designsbysm/gibson v1.2.0/go.mod h1:/PbLrQOmOFe38aE82EGPu4vPVG1qiymk8lHw6wTUfks=
+github.com/designsbysm/logger/v2 v2.5.0/go.mod h1:+0/YNEgV08JDXDzqyV4ZsLYQpCc4+Re3s9TMefB/AFs=
+github.com/designsbysm/logger/v2 v2.5.2 h1:eyewV4qdmMhhA4ognDHL3oKB3PzNbfJ5XPi9TrpAZbU=
+github.com/designsbysm/logger/v2 v2.5.2/go.mod h1:+0/YNEgV08JDXDzqyV4ZsLYQpCc4+Re3s9TMefB/AFs=
 github.com/designsbysm/loggeremail v1.2.0 h1:3ePYoAyrb/uM2uYBHd/QehubLFZM5MwQD1g7EZ9nnDc=
 github.com/designsbysm/loggeremail v1.2.0/go.mod h1:PRNJiflzqJrvlLN+KBd668Lle607GJ7+o7bMi6TSlL8=
 github.com/designsbysm/loggerfile v1.1.1 h1:0sMMkSUecfKQGkGvLXSUMPlGhIW5pXB33MP3FIllOVg=

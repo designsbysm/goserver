@@ -2,13 +2,13 @@ module github.com/designsbysm/server-go
 
 go 1.17
 
-// replace github.com/designsbysm/ginmiddleware => /Users/developer/Development/go-modules/gin-middleware
-// replace github.com/designsbysm/logger/v2 => /Users/developer/Development/go-modules/logger
-// replace github.com/designsbysm/loggerfile => /Users/developer/Development/go-modules/logger-file
-// replace github.com/designsbysm/loggeremail => /Users/developer/Development/go-modules/logger-email
+// replace github.com/designsbysm/gibson => ../../go-modules/gibson
+// replace github.com/designsbysm/logger/v2 => ../../go-modules/logger
+// replace github.com/designsbysm/loggerfile => ../../go-modules/logger-file
+// replace github.com/designsbysm/loggeremail => ../../go-modules/logger-email
 
 require (
-	github.com/designsbysm/ginmiddleware v1.1.1
+	github.com/designsbysm/gibson v1.2.0
 	github.com/designsbysm/logger/v2 v2.5.2
 	github.com/designsbysm/loggeremail v1.2.0
 	github.com/designsbysm/loggerfile v1.1.1

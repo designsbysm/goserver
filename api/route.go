@@ -1,7 +1,7 @@
 package api
 
 import (
-	"github.com/designsbysm/ginmiddleware"
+	"github.com/designsbysm/gibson"
 	v1 "github.com/designsbysm/server-go/api/v1"
 	"github.com/gin-gonic/gin"
 )
@@ -9,8 +9,8 @@ import (
 func AddRoute(r *gin.Engine) {
 	r.Use(
 		gin.Recovery(),
-		ginmiddleware.Logger(),
-		ginmiddleware.Error(),
+		gibson.Logger(),
+		gibson.Error(),
 	)
 
 	group := r.Group("api")
