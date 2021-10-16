@@ -1,0 +1,39 @@
+@url = /api/v1/user
+
+GET {{host}}{{url}}/
+Authorization: Bearer {{token}}
+###
+
+POST {{host}}{{url}}/
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "firstName": "Anne",
+  "LastName": "Jones",
+  "email": "anne@designsbysm.com",
+  "password": "ABCDEFG",
+  "roleID": 2
+}
+###
+
+GET {{host}}{{url}}/2
+Authorization: Bearer {{token}}
+###
+
+PUT {{host}}{{url}}/2
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "firstName": "Steve",
+  "LastName": "Johnson",
+  "email": "steve@designsbysm.com",
+  "password": "12345678",
+  "roleID": 1
+}
+###
+
+DELETE {{host}}{{url}}/2
+Authorization: Bearer {{token}}
+###

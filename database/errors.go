@@ -4,5 +4,4 @@ import (
 	"errors"
 )
 
-var errorPasswordRequired = errors.New("User error: password is required")
-var errorPropertyRequired = errors.New("Setting error: property is required")
+var ErrPasswordRequired = errors.New("User error: password required")

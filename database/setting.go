@@ -1,14 +1,19 @@
 package database
 
 import (
+	"time"
+
 	"gorm.io/datatypes"
 	"gorm.io/gorm"
 )
 
 type Setting struct {
-	gorm.Model
-	Key   string `gorm:"uniqueIndex;not null"`
-	Value datatypes.JSONMap
+	ID        uint            `gorm:"primaryKey" json:"id"`
+	CreatedAt time.Time       `json:"createdAt"`
+	UpdatedAt time.Time       `json:"updatedAt"`
+	DeletedAt *gorm.DeletedAt `gorm:"index" json:"deletedAt,omitempty"`
+	Key       string          `gorm:"uniqueIndex;not null"`
+	Value     datatypes.JSONMap
 }
 
 func (s *Setting) GetBool(property string) bool {

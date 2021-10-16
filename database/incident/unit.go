@@ -1,9 +1,16 @@
 package incident
 
-import "gorm.io/gorm"
+import (
+	"time"
+
+	"gorm.io/gorm"
+)
 
 type Unit struct {
-	gorm.Model
-	CallSign string
-	Members  []Member `gorm:"many2many:unit_members;"`
+	ID        uint            `gorm:"primaryKey" json:"id"`
+	CreatedAt time.Time       `json:"createdAt"`
+	UpdatedAt time.Time       `json:"updatedAt"`
+	DeletedAt *gorm.DeletedAt `gorm:"index" json:"deletedAt,omitempty"`
+	CallSign  string
+	Members   []Member `gorm:"many2many:unit_members;"`
 }

@@ -1,8 +1,15 @@
 package incident
 
-import "gorm.io/gorm"
+import (
+	"time"
+
+	"gorm.io/gorm"
+)
 
 type MemberLevel struct {
-	gorm.Model
-	Name string
+	ID        uint            `gorm:"primaryKey" json:"id"`
+	CreatedAt time.Time       `json:"createdAt"`
+	UpdatedAt time.Time       `json:"updatedAt"`
+	DeletedAt *gorm.DeletedAt `gorm:"index" json:"deletedAt,omitempty"`
+	Name      string
 }

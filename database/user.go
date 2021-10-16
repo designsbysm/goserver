@@ -1,25 +1,30 @@
 package database
 
 import (
+	"time"
+
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
 )
 
 type User struct {
-	gorm.Model
-	FirstName   string `gorm:"not null"`
-	LastName    string `gorm:"not null"`
-	Email       string `gorm:"uniqueIndex;not null"`
-	Password    string `gorm:"not null"`
-	AuthToken   string
-	RoleID      uint
-	Role        Role   `gorm:"constraint:OnDelete:SET NULL;"`
-	RawPassword string `gorm:"-"`
+	ID          uint            `gorm:"primaryKey" json:"id"`
+	CreatedAt   time.Time       `json:"createdAt"`
+	UpdatedAt   time.Time       `json:"updatedAt"`
+	DeletedAt   *gorm.DeletedAt `gorm:"index" json:"deletedAt,omitempty"`
+	FirstName   string          `gorm:"not null" json:"firstName"`
+	LastName    string          `gorm:"not null" json:"lastName"`
+	Email       string          `gorm:"uniqueIndex;not null" json:"email"`
+	Password    string          `gorm:"not null" json:"-"`
+	AuthToken   string          `json:"-"`
+	RoleID      uint            `json:"roleID"`
+	Role        *Role           `gorm:"constraint:OnDelete:SET NULL;" json:"role,omitempty"`
+	RawPassword string          `gorm:"-" json:"password,omitempty"`
 }
 
 func (u *User) BeforeSave(tx *gorm.DB) error {
 	if u.Password == "" && u.RawPassword == "" {
-		return errorPasswordRequired
+		return ErrPasswordRequired
 	} else if u.Password != "" {
 		return nil
 	}
@@ -30,12 +35,30 @@ func (u *User) BeforeSave(tx *gorm.DB) error {
 	}
 
 	u.Password = string(hash)
+	u.RawPassword = ""
 
 	return nil
 }
 
 func (u *User) Create() error {
 	return DB.FirstOrCreate(&u, u).Error
+}
+
+func (u *User) Delete() error {
+	return DB.Delete(&u, u).Error
+}
+
+func (u *User) List(flags int) ([]User, error) {
+	db := DB
+	list := []User{}
+
+	if flags&PreloadRole != 0 {
+		db = DB.Preload("Role")
+	}
+
+	err := db.Find(&list, User{}).Error
+
+	return list, err
 }
 
 func (u *User) Read(flags int) error {
@@ -54,7 +77,7 @@ func (u *User) Update() error {
 
 func (u *User) ValidatePassword() error {
 	if u.RawPassword == "" {
-		return errorPasswordRequired
+		return ErrPasswordRequired
 	}
 
 	return bcrypt.CompareHashAndPassword([]byte(u.Password), []byte(u.RawPassword))
