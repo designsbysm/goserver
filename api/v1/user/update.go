@@ -37,10 +37,6 @@ func update(c *gin.Context) {
 		return
 	}
 
-	if user.RawPassword != "" {
-		user.Password = ""
-	}
-
 	if user.RoleID != currentRole {
 		role := database.Role{
 			ID: user.RoleID,

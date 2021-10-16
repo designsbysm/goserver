@@ -25,7 +25,7 @@ type User struct {
 func (u *User) BeforeSave(tx *gorm.DB) error {
 	if u.Password == "" && u.RawPassword == "" {
 		return ErrPasswordRequired
-	} else if u.Password != "" {
+	} else if u.RawPassword == "" {
 		return nil
 	}
 
