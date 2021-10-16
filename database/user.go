@@ -56,7 +56,7 @@ func (u *User) List(flags int) ([]User, error) {
 		db = DB.Preload("Role")
 	}
 
-	err := db.Find(&list, User{}).Error
+	err := db.Find(&list, u).Error
 
 	return list, err
 }

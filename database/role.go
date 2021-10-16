@@ -18,3 +18,7 @@ type Role struct {
 func (r *Role) Create() error {
 	return DB.FirstOrCreate(&r, r).Error
 }
+
+func (r *Role) Read() error {
+	return DB.First(&r, r).Error
+}

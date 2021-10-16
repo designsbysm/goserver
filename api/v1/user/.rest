@@ -26,11 +26,7 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "firstName": "Steve",
-  "LastName": "Johnson",
-  "email": "steve@designsbysm.com",
-  "password": "12345678",
-  "roleID": 1
+  "email": "bs@designsbysm.com"
 }
 ###
 

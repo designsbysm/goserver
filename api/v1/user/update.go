@@ -9,14 +9,6 @@ import (
 	"gorm.io/gorm"
 )
 
-type request struct {
-	FirstName string
-	LastName  string
-	Email     string
-	Password  string
-	RoleID    uint
-}
-
 func update(c *gin.Context) {
 	id, err := tools.GetIDParam(c)
 	if err != nil {
@@ -27,7 +19,6 @@ func update(c *gin.Context) {
 	user := database.User{
 		ID: id,
 	}
-
 	err = user.Read(database.PreloadRole)
 	if err != nil {
 		status := http.StatusInternalServerError
@@ -38,33 +29,28 @@ func update(c *gin.Context) {
 		c.AbortWithError(status, err)
 		return
 	}
+	currentRole := user.RoleID
 
-	request := request{}
-	err = c.BindJSON(&request)
+	err = c.BindJSON(&user)
 	if err != nil {
 		c.AbortWithError(http.StatusBadRequest, err)
 		return
 	}
 
-	if request.FirstName != "" {
-		user.FirstName = request.FirstName
+	if user.RawPassword != "" {
+		user.Password = ""
 	}
 
-	if request.LastName != "" {
-		user.LastName = request.LastName
-	}
+	if user.RoleID != currentRole {
+		role := database.Role{
+			ID: user.RoleID,
+		}
+		if err := role.Read(); err != nil {
+			c.AbortWithError(http.StatusInternalServerError, err)
+			return
+		}
 
-	if request.Email != "" {
-		user.Email = request.Email
-	}
-
-	if request.Password != "" {
-		user.RawPassword = request.Password
-	}
-
-	if request.RoleID != 0 {
-		user.RoleID = request.RoleID
-		user.Role = nil
+		user.Role = &role
 	}
 
 	err = user.Update()

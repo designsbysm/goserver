@@ -18,7 +18,6 @@ func delete(c *gin.Context) {
 	user := database.User{
 		ID: id,
 	}
-
 	err = user.Delete()
 	if err != nil {
 		c.AbortWithError(http.StatusInternalServerError, err)
