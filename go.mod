@@ -8,10 +8,10 @@ go 1.17
 // replace github.com/designsbysm/loggeremail => ../../go-modules/logger-email
 
 require (
-	github.com/designsbysm/gibson v1.2.0
-	github.com/designsbysm/logger/v2 v2.5.2
-	github.com/designsbysm/loggeremail v1.2.0
-	github.com/designsbysm/loggerfile v1.1.1
+	github.com/designsbysm/gibson v1.2.2
+	github.com/designsbysm/timber/v2 v2.6.0
+	github.com/designsbysm/timberemail v1.3.0
+	github.com/designsbysm/timberfile v1.2.0
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/gin-gonic/gin v1.7.4
 	github.com/spf13/viper v1.9.0
@@ -54,7 +54,7 @@ require (
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/subosito/gotenv v1.2.0 // indirect
 	github.com/ugorji/go/codec v1.2.6 // indirect
-	golang.org/x/sys v0.0.0-20211013075003-97ac67df715c // indirect
+	golang.org/x/sys v0.0.0-20211015200801-69063c4bb744 // indirect
 	golang.org/x/text v0.3.7 // indirect
 	google.golang.org/protobuf v1.27.1 // indirect
 	gopkg.in/ini.v1 v1.63.2 // indirect

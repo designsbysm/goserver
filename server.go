@@ -6,7 +6,7 @@ import (
 	"github.com/designsbysm/server-go/api"
 	"github.com/designsbysm/server-go/client"
 
-	"github.com/designsbysm/logger/v2"
+	"github.com/designsbysm/timber/v2"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
 )
@@ -20,7 +20,7 @@ func server() error {
 	protocol := viper.GetString("server.protocol")
 
 	if viper.GetBool("gin.release") {
-		logger.Info(
+		timber.Info(
 			fmt.Sprintf("serving %s over %s", protocol, port),
 		)
 	}

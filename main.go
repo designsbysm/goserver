@@ -1,9 +1,7 @@
 // TODO: add documentation
 package main
 
-import (
-	"github.com/designsbysm/server-go/database"
-)
+import "github.com/designsbysm/server-go/database"
 
 func main() {
 	if err := loadConfig(); err != nil {

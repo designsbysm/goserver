@@ -3,9 +3,9 @@ package main
 import (
 	"os"
 
-	"github.com/designsbysm/logger/v2"
-	"github.com/designsbysm/loggeremail"
-	"github.com/designsbysm/loggerfile"
+	"github.com/designsbysm/timber/v2"
+	"github.com/designsbysm/timberemail"
+	"github.com/designsbysm/timberfile"
 	"github.com/spf13/viper"
 )
 
@@ -26,41 +26,41 @@ func loggers() error {
 }
 
 func cli() error {
-	return logger.New(
+	return timber.New(
 		os.Stdout,
-		viper.GetInt("logger.cli.level"),
-		viper.GetString("logger.cli.timestamp"),
-		viper.GetInt("logger.cli.flags"),
+		viper.GetInt("timber.cli.level"),
+		viper.GetString("timber.cli.timestamp"),
+		viper.GetInt("timber.cli.flags"),
 	)
 }
 
 func email() error {
-	w := loggeremail.New(
-		viper.GetString("logger.email.subject"),
-		viper.GetString("logger.email.from"),
+	w := timberemail.New(
+		viper.GetString("timber.email.subject"),
+		viper.GetString("timber.email.from"),
 		"",
-		[]string{viper.GetString("logger.email.to")},
-		viper.GetString("logger.email.host"),
-		viper.GetInt("logger.email.port"),
+		[]string{viper.GetString("timber.email.to")},
+		viper.GetString("timber.email.host"),
+		viper.GetInt("timber.email.port"),
 	)
 
-	return logger.New(
+	return timber.New(
 		w,
-		viper.GetInt("logger.email.level"),
-		viper.GetString("logger.email.timestamp"),
-		viper.GetInt("logger.email.flags"),
+		viper.GetInt("timber.email.level"),
+		viper.GetString("timber.email.timestamp"),
+		viper.GetInt("timber.email.flags"),
 	)
 }
 
 func file() error {
-	w := loggerfile.New(
-		viper.GetString("logger.file.path"),
+	w := timberfile.New(
+		viper.GetString("timber.file.path"),
 	)
 
-	return logger.New(
+	return timber.New(
 		w,
-		viper.GetInt("logger.file.level"),
-		viper.GetString("logger.file.timestamp"),
-		viper.GetInt("logger.file.flags"),
+		viper.GetInt("timber.file.level"),
+		viper.GetString("timber.file.timestamp"),
+		viper.GetInt("timber.file.flags"),
 	)
 }

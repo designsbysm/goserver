@@ -1,7 +1,7 @@
 package database
 
 import (
-	"github.com/designsbysm/logger/v2"
+	"github.com/designsbysm/timber/v2"
 	"github.com/spf13/viper"
 )
 
@@ -10,7 +10,7 @@ func populateDB() {
 		Key: "database",
 	}
 	if err := setting.Read(); err != nil {
-		logger.Error(err)
+		timber.Error(err)
 	} else if setting.GetBool("populated") {
 		return
 	}
@@ -20,7 +20,7 @@ func populateDB() {
 		IsAdmin: true,
 	}
 	if err := role.Create(); err != nil {
-		logger.Error(err)
+		timber.Error(err)
 	}
 
 	user := User{
@@ -31,7 +31,7 @@ func populateDB() {
 		RoleID:    role.ID,
 	}
 	if err := user.Create(); err != nil {
-		logger.Error(err)
+		timber.Error(err)
 	}
 
 	role = Role{
@@ -39,7 +39,7 @@ func populateDB() {
 		IsAdmin: false,
 	}
 	if err := role.Create(); err != nil {
-		logger.Error(err)
+		timber.Error(err)
 	}
 
 	user = User{
@@ -50,11 +50,11 @@ func populateDB() {
 		RoleID:    role.ID,
 	}
 	if err := user.Create(); err != nil {
-		logger.Error(err)
+		timber.Error(err)
 	}
 
 	setting.Value["populated"] = true
 	if err := setting.Upsert(); err != nil {
-		logger.Error(err)
+		timber.Error(err)
 	}
 }
