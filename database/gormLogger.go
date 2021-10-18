@@ -5,17 +5,16 @@ import (
 	"os"
 	"time"
 
-	"github.com/spf13/viper"
 	"gorm.io/gorm/logger"
 )
 
-func gormLogger() logger.Interface {
+func gormLogger(level int) logger.Interface {
 	return logger.New(
 		log.New(os.Stdout, "\r\n", 0),
 		logger.Config{
 			Colorful:                  true,
 			IgnoreRecordNotFoundError: true,
-			LogLevel:                  logger.LogLevel(viper.GetInt("gorm.level")),
+			LogLevel:                  logger.LogLevel(level),
 			SlowThreshold:             200 * time.Millisecond,
 		},
 	)

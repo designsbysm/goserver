@@ -8,9 +8,9 @@ import (
 	"github.com/spf13/viper"
 )
 
-func Encode(user *database.User) (Session, error) {
-	session := Session{
-		ID:        user.ID,
+func Encode(user *database.User) (database.Session, error) {
+	session := database.Session{
+		UserID:    user.ID,
 		FirstName: user.FirstName,
 		LastName:  user.LastName,
 		Role:      user.Role.Name,
@@ -34,8 +34,6 @@ func Encode(user *database.User) (Session, error) {
 	if err != nil {
 		return session, err
 	}
-
-	user.AuthToken = tokenString
 	session.Token = tokenString
 
 	return session, nil

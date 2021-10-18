@@ -14,12 +14,13 @@ func logout(c *gin.Context) {
 		c.AbortWithError(http.StatusInternalServerError, errors.New("missing user data"))
 		return
 	}
-
 	user := data.(database.User)
-	user.AuthToken = ""
 
-	err := user.Update()
-	if err != nil {
+	session := database.Session{
+		UserID: user.ID,
+		Token:  "",
+	}
+	if err := session.Update(); err != nil {
 		c.AbortWithError(http.StatusInternalServerError, err)
 		return
 	}

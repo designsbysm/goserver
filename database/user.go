@@ -16,10 +16,10 @@ type User struct {
 	LastName    string          `gorm:"not null" json:"lastName"`
 	Email       string          `gorm:"uniqueIndex;not null" json:"email"`
 	Password    string          `gorm:"not null" json:"-"`
-	AuthToken   string          `json:"-"`
 	RoleID      uint            `json:"roleID"`
 	Role        *Role           `gorm:"constraint:OnDelete:SET NULL;" json:"role,omitempty"`
-	RawPassword string          `gorm:"-" json:"password,omitempty"`
+	Session     Session
+	RawPassword string `gorm:"-" json:"password,omitempty"`
 }
 
 func (u *User) BeforeSave(tx *gorm.DB) error {
@@ -75,10 +75,10 @@ func (u *User) Update() error {
 	return DB.Save(&u).Error
 }
 
-func (u *User) ValidatePassword() error {
-	if u.RawPassword == "" {
+func (u *User) ValidatePassword(password string) error {
+	if password == "" {
 		return ErrPasswordRequired
 	}
 
-	return bcrypt.CompareHashAndPassword([]byte(u.Password), []byte(u.RawPassword))
+	return bcrypt.CompareHashAndPassword([]byte(u.Password), []byte(password))
 }

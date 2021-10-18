@@ -23,7 +23,7 @@ gin:
 gorm:
   level: 3
 
-logger:
+timber:
   cli:
     level: 9
     timestamp: "[15:04:05]"

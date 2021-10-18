@@ -20,9 +20,17 @@ func AuthorizeJWT() gin.HandlerFunc {
 			return
 		}
 
+		session := database.Session{
+			UserID: uint(claims["id"].(float64)),
+			Token:  token,
+		}
+		if err := session.Read(); err != nil {
+			c.AbortWithStatus(http.StatusUnauthorized)
+			return
+		}
+
 		user := database.User{
-			ID:        uint(claims["id"].(float64)),
-			AuthToken: token,
+			ID: session.UserID,
 		}
 		if err = user.Read(database.PreloadRole); err != nil {
 			c.AbortWithStatus(http.StatusUnauthorized)

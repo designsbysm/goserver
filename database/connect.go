@@ -15,7 +15,7 @@ func Connect() (err error) {
 			viper.GetString("db.connection"),
 		),
 		&gorm.Config{
-			Logger: gormLogger(),
+			Logger: gormLogger(viper.GetInt("gorm.level")),
 		})
 	if err != nil {
 		return
@@ -25,6 +25,7 @@ func Connect() (err error) {
 		&Role{},
 		&Setting{},
 		&User{},
+		&Session{},
 	)
 	populateDB()
 

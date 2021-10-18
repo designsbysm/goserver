@@ -28,8 +28,7 @@ func login(c *gin.Context) {
 	}
 
 	user := database.User{
-		Email:       request.Email,
-		RawPassword: request.Password,
+		Email: request.Email,
 	}
 	err = user.Read(database.PreloadRole)
 	if err != nil {
@@ -37,7 +36,7 @@ func login(c *gin.Context) {
 		return
 	}
 
-	err = user.ValidatePassword()
+	err = user.ValidatePassword(request.Password)
 	if err != nil {
 		c.Status(http.StatusUnauthorized)
 		return
@@ -49,8 +48,7 @@ func login(c *gin.Context) {
 		return
 	}
 
-	err = user.Update()
-	if err != nil {
+	if err := session.Update(); err != nil {
 		c.AbortWithError(http.StatusInternalServerError, err)
 		return
 	}
