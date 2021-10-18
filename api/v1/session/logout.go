@@ -20,7 +20,7 @@ func logout(c *gin.Context) {
 		UserID: user.ID,
 		Token:  "",
 	}
-	if err := session.Update(); err != nil {
+	if err := session.Upsert(); err != nil {
 		c.AbortWithError(http.StatusInternalServerError, err)
 		return
 	}

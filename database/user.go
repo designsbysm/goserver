@@ -17,9 +17,9 @@ type User struct {
 	Email       string          `gorm:"uniqueIndex;not null" json:"email"`
 	Password    string          `gorm:"not null" json:"-"`
 	RoleID      uint            `json:"roleID"`
-	Role        *Role           `gorm:"constraint:OnDelete:SET NULL;" json:"role,omitempty"`
-	Session     Session
-	RawPassword string `gorm:"-" json:"password,omitempty"`
+	Role        *Role           `gorm:"constraint:OnDelete:SET NULL" json:"role,omitempty"`
+	Session     Session         `gorm:"constraint:OnDelete:SET NULL"`
+	RawPassword string          `gorm:"-" json:"password,omitempty"`
 }
 
 func (u *User) BeforeSave(tx *gorm.DB) error {

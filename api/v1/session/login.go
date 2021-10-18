@@ -48,7 +48,7 @@ func login(c *gin.Context) {
 		return
 	}
 
-	if err := session.Update(); err != nil {
+	if err := session.Upsert(); err != nil {
 		c.AbortWithError(http.StatusInternalServerError, err)
 		return
 	}

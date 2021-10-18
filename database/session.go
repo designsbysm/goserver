@@ -18,7 +18,7 @@ func (s *Session) Read() error {
 	return DB.First(&s, s).Error
 }
 
-func (s *Session) Update() error {
+func (s *Session) Upsert() error {
 	tempToken := s.Token
 
 	if err := DB.FirstOrCreate(&s, Session{
