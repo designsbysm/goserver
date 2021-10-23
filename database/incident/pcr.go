@@ -6,16 +6,16 @@ import (
 	"gorm.io/gorm"
 )
 
-type PCR struct {
+type InPCR struct {
 	ID         uint            `gorm:"primaryKey" json:"id"`
 	CreatedAt  time.Time       `json:"createdAt"`
 	UpdatedAt  time.Time       `json:"updatedAt"`
 	DeletedAt  *gorm.DeletedAt `gorm:"index" json:"deletedAt,omitempty"`
 	IncidentID uint
 	PatientID  uint
-	Patient    Patient
+	Patient    InPatient
 	UnitID     uint
-	Unit       Unit
+	Unit       InUnit
 	AuthorID   uint
-	Author     Member
+	Author     InMember
 }

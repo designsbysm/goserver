@@ -6,7 +6,7 @@ import (
 	"gorm.io/gorm"
 )
 
-type Member struct {
+type InMember struct {
 	ID        uint            `gorm:"primaryKey" json:"id"`
 	CreatedAt time.Time       `json:"createdAt"`
 	UpdatedAt time.Time       `json:"updatedAt"`
@@ -14,5 +14,5 @@ type Member struct {
 	FirstName string
 	LastName  string
 	LevelID   uint
-	Level     MemberLevel
+	Level     InMemberLevel
 }

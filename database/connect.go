@@ -30,12 +30,12 @@ func Connect() (err error) {
 	populateDB()
 
 	DB.AutoMigrate(
-		&incident.Incident{},
-		&incident.Member{},
-		&incident.MemberLevel{},
-		&incident.Patient{},
-		&incident.PCR{},
-		&incident.Unit{},
+		&incident.InIncident{},
+		&incident.InMember{},
+		&incident.InMemberLevel{},
+		&incident.InPatient{},
+		&incident.InPCR{},
+		&incident.InUnit{},
 	)
 
 	return
