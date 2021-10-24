@@ -20,9 +20,7 @@ func server() error {
 	protocol := viper.GetString("server.protocol")
 
 	if viper.GetBool("gin.release") {
-		timber.Info(
-			fmt.Sprintf("serving %s over %s", protocol, port),
-		)
+		timber.Info(fmt.Sprintf("serving %s over %s", protocol, port))
 	}
 
 	if protocol == "HTTPS" {

@@ -28,9 +28,9 @@ func loggers() error {
 func cli() error {
 	return timber.New(
 		os.Stdout,
-		viper.GetInt("timber.cli.level"),
+		timber.StringToLevel(viper.GetString("timber.cli.level")),
 		viper.GetString("timber.cli.timestamp"),
-		viper.GetInt("timber.cli.flags"),
+		timber.StringToFlags(viper.GetString("timber.cli.flags")),
 	)
 }
 
@@ -46,9 +46,9 @@ func email() error {
 
 	return timber.New(
 		w,
-		viper.GetInt("timber.email.level"),
+		timber.StringToLevel(viper.GetString("timber.email.level")),
 		viper.GetString("timber.email.timestamp"),
-		viper.GetInt("timber.email.flags"),
+		timber.StringToFlags(viper.GetString("timber.email.flags")),
 	)
 }
 
@@ -59,8 +59,8 @@ func file() error {
 
 	return timber.New(
 		w,
-		viper.GetInt("timber.file.level"),
+		timber.StringToLevel(viper.GetString("timber.file.level")),
 		viper.GetString("timber.file.timestamp"),
-		viper.GetInt("timber.file.flags"),
+		timber.StringToFlags(viper.GetString("timber.file.flags")),
 	)
 }
