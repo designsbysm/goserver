@@ -14,7 +14,7 @@ func Decode(tokenString string) (jwt.MapClaims, error) {
 			return nil, fmt.Errorf("unexpected signing method: %v", token.Header["alg"])
 		}
 
-		return []byte(viper.GetString("server.jwt.secret")), nil
+		return []byte(viper.GetString("jwt.secret")), nil
 	})
 	if err != nil {
 		return nil, err

@@ -9,7 +9,7 @@ import (
 	"github.com/spf13/viper"
 )
 
-func loadConfig() error {
+func configure() error {
 	viper.SetConfigName("server")
 	viper.AddConfigPath(".")
 	if err := viper.ReadInConfig(); err != nil {

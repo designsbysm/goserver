@@ -15,7 +15,7 @@ func Encode(user *database.User) (database.Session, error) {
 		LastName:  user.LastName,
 		Role:      user.Role.Name,
 	}
-	secretKey := []byte(viper.GetString("server.jwt.secret"))
+	secretKey := []byte(viper.GetString("jwt.secret"))
 
 	defaulDuration := 8
 	if user.Role.IsAdmin {
