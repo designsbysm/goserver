@@ -42,12 +42,24 @@ func login(c *gin.Context) {
 		return
 	}
 
-	session, err := jwt.Encode(&user)
+	session := database.Session{
+		UserID:    user.ID,
+		FirstName: user.FirstName,
+		LastName:  user.LastName,
+		Role:      user.Role.Name,
+	}
+	if err = session.Upsert(); err != nil {
+		c.AbortWithError(http.StatusInternalServerError, err)
+		return
+	}
+
+	token, err := jwt.Encode(session.ID, *user.Role)
 	if err != nil {
 		c.AbortWithError(http.StatusInternalServerError, err)
 		return
 	}
 
+	session.Token = token
 	if err := session.Upsert(); err != nil {
 		c.AbortWithError(http.StatusInternalServerError, err)
 		return

@@ -7,6 +7,7 @@ import (
 	"github.com/designsbysm/server-go/database"
 	"github.com/designsbysm/server-go/jwt"
 	"github.com/gin-gonic/gin"
+	"github.com/google/uuid"
 )
 
 func AuthorizeJWT() gin.HandlerFunc {
@@ -20,9 +21,15 @@ func AuthorizeJWT() gin.HandlerFunc {
 			return
 		}
 
+		id, err := uuid.Parse(claims["id"].(string))
+		if err != nil {
+			c.AbortWithError(http.StatusInternalServerError, err)
+			return
+		}
+
 		session := database.Session{
-			UserID: uint(claims["id"].(float64)),
-			Token:  token,
+			ID:    id,
+			Token: token,
 		}
 		if err := session.Read(); err != nil {
 			c.AbortWithStatus(http.StatusUnauthorized)

@@ -2,16 +2,25 @@ package database
 
 import (
 	"time"
+
+	"github.com/google/uuid"
+	"gorm.io/gorm"
 )
 
 type Session struct {
-	ID        uint      `gorm:"primaryKey" json:"-"`
+	ID        uuid.UUID `gorm:"type:uuid;primaryKey" json:"-"`
 	UpdatedAt time.Time `json:"-"`
-	UserID    uint      `gorm:"uniqueIndex" json:"id"`
+	UserID    uuid.UUID `gorm:"type:uuid;uniqueIndex" json:"id"`
 	FirstName string    `gorm:"-" json:"firstName"`
 	LastName  string    `gorm:"-" json:"lastName"`
 	Role      string    `gorm:"-" json:"role"`
 	Token     string    `json:"token"`
+}
+
+func (s *Session) BeforeCreate(tx *gorm.DB) error {
+	s.ID = uuid.New()
+
+	return nil
 }
 
 func (s *Session) Read() error {

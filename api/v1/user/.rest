@@ -1,4 +1,5 @@
 @url = /api/v1/user
+@id = 49d3d4a9-2db0-4881-b8f8-63111f5829a5
 
 GET {{host}}{{url}}/
 Authorization: Bearer {{token}}
@@ -17,11 +18,11 @@ Content-Type: application/json
 }
 ###
 
-GET {{host}}{{url}}/2
+GET {{host}}{{url}}/{{id}}
 Authorization: Bearer {{token}}
 ###
 
-PUT {{host}}{{url}}/2
+PUT {{host}}{{url}}/{{id}}
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -30,6 +31,6 @@ Content-Type: application/json
 }
 ###
 
-DELETE {{host}}{{url}}/2
+DELETE {{host}}{{url}}/{{id}}
 Authorization: Bearer {{token}}
 ###

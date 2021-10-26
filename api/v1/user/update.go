@@ -4,13 +4,13 @@ import (
 	"net/http"
 
 	"github.com/designsbysm/server-go/database"
-	"github.com/designsbysm/server-go/tools"
 	"github.com/gin-gonic/gin"
+	"github.com/google/uuid"
 	"gorm.io/gorm"
 )
 
 func update(c *gin.Context) {
-	id, err := tools.GetIDParam(c)
+	id, err := uuid.Parse(c.Param("id"))
 	if err != nil {
 		c.AbortWithError(http.StatusBadRequest, err)
 		return

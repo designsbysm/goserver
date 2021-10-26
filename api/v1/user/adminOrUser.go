@@ -4,8 +4,8 @@ import (
 	"net/http"
 
 	"github.com/designsbysm/server-go/database"
-	"github.com/designsbysm/server-go/tools"
 	"github.com/gin-gonic/gin"
+	"github.com/google/uuid"
 )
 
 func adminOrUser() gin.HandlerFunc {
@@ -24,7 +24,7 @@ func adminOrUser() gin.HandlerFunc {
 			return
 		}
 
-		id, err := tools.GetIDParam(c)
+		id, err := uuid.Parse(c.Param("id"))
 		if err != nil {
 			c.AbortWithError(http.StatusBadRequest, err)
 			return

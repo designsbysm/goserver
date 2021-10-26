@@ -10,7 +10,7 @@ import (
 func list(c *gin.Context) {
 	user := database.User{}
 
-	list, err := user.List(0)
+	list, err := user.List(database.PreloadRole)
 	if err != nil {
 		c.AbortWithError(http.StatusInternalServerError, err)
 		return
