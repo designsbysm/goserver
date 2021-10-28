@@ -26,15 +26,25 @@ func loggers() error {
 }
 
 func cli() error {
+	level := timber.StringToLevel(viper.GetString("timber.cli.level"))
+	if level < 1 {
+		return nil
+	}
+
 	return timber.New(
 		os.Stdout,
-		timber.StringToLevel(viper.GetString("timber.cli.level")),
+		level,
 		viper.GetString("timber.cli.timestamp"),
 		timber.StringToFlags(viper.GetString("timber.cli.flags")),
 	)
 }
 
 func email() error {
+	level := timber.StringToLevel(viper.GetString("timber.email.level"))
+	if level < 1 {
+		return nil
+	}
+
 	w := timberemail.New(
 		viper.GetString("timber.email.subject"),
 		viper.GetString("timber.email.from"),
@@ -46,20 +56,25 @@ func email() error {
 
 	return timber.New(
 		w,
-		timber.StringToLevel(viper.GetString("timber.email.level")),
+		level,
 		viper.GetString("timber.email.timestamp"),
 		timber.StringToFlags(viper.GetString("timber.email.flags")),
 	)
 }
 
 func file() error {
+	level := timber.StringToLevel(viper.GetString("timber.file.level"))
+	if level < 1 {
+		return nil
+	}
+
 	w := timberfile.New(
 		viper.GetString("timber.file.path"),
 	)
 
 	return timber.New(
 		w,
-		timber.StringToLevel(viper.GetString("timber.file.level")),
+		level,
 		viper.GetString("timber.file.timestamp"),
 		timber.StringToFlags(viper.GetString("timber.file.flags")),
 	)

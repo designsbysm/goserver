@@ -9,10 +9,20 @@ import (
 	"github.com/spf13/viper"
 )
 
-func configure() error {
-	viper.SetConfigName("server")
+func config() error {
+	viper.SetConfigName("config")
 	viper.AddConfigPath(".")
 	if err := viper.ReadInConfig(); err != nil {
+		if _, ok := err.(viper.ConfigFileNotFoundError); ok {
+			return errors.New("./default.yaml not found")
+		} else {
+			return err
+		}
+	}
+
+	viper.SetConfigName("override")
+	viper.AddConfigPath(".")
+	if err := viper.MergeInConfig(); err != nil {
 		if _, ok := err.(viper.ConfigFileNotFoundError); ok {
 			return errors.New("./server.yaml not found")
 		} else {

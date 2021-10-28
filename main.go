@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	if err := configure(); err != nil {
+	if err := config(); err != nil {
 		panic(err)
 	}
 

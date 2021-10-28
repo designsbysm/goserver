@@ -1,0 +1,28 @@
+api:
+  port: :5000
+  protocol: HTTP
+client:
+  server: http://localhost:3000
+gin:
+  release: true
+gorm:
+  level: 3
+rpc:
+  port: :5010
+ssl:
+  cert: cert.pem
+  key: key.pem
+timber:
+  cli:
+    level: LevelAll
+    flags: FlagColorful|FlagFileProject
+    timestamp: "[15:04:05]"
+  file:
+    level: LevelSilent
+    flags: FlagTitle
+    timestamp: "[15:04:05]"
+    path: logs/2006/01/2006-01-02.log
+  email:
+    level: LevelSilent
+    flags: FlagNone
+    timestamp: ""
