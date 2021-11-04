@@ -10,14 +10,13 @@ import (
 var DB *gorm.DB
 
 func Connect() (err error) {
-	DB, err = gorm.Open(
+	if DB, err = gorm.Open(
 		postgres.Open(
 			viper.GetString("db.connection"),
 		),
 		&gorm.Config{
 			Logger: gormLogger(viper.GetInt("gorm.level")),
-		})
-	if err != nil {
+		}); err != nil {
 		return
 	}
 
