@@ -8,8 +8,8 @@ go 1.17
 // replace github.com/designsbysm/timberemail => ../../go-modules/timber-email
 
 require (
-	github.com/designsbysm/gibson v1.2.2
-	github.com/designsbysm/timber/v2 v2.7.0
+	github.com/designsbysm/gibson v1.2.4
+	github.com/designsbysm/timber/v2 v2.8.0
 	github.com/designsbysm/timberemail v1.3.0
 	github.com/designsbysm/timberfile v1.2.0
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
@@ -19,8 +19,8 @@ require (
 	golang.org/x/crypto v0.0.0-20210921155107-089bfa567519
 	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c
 	gorm.io/datatypes v1.0.2
-	gorm.io/driver/postgres v1.2.0
-	gorm.io/gorm v1.22.0
+	gorm.io/driver/postgres v1.2.1
+	gorm.io/gorm v1.22.2
 )
 
 require (
@@ -49,14 +49,13 @@ require (
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/pelletier/go-toml v1.9.4 // indirect
-	github.com/pkg/errors v0.9.1 // indirect
 	github.com/spf13/afero v1.6.0 // indirect
 	github.com/spf13/cast v1.4.1 // indirect
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/subosito/gotenv v1.2.0 // indirect
 	github.com/ugorji/go/codec v1.2.6 // indirect
-	golang.org/x/sys v0.0.0-20211025201205-69cdffdb9359 // indirect
+	golang.org/x/sys v0.0.0-20211103235746-7861aae1554b // indirect
 	golang.org/x/text v0.3.7 // indirect
 	google.golang.org/protobuf v1.27.1 // indirect
 	gopkg.in/ini.v1 v1.63.2 // indirect
