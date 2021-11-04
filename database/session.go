@@ -14,7 +14,7 @@ type Session struct {
 	FirstName string    `gorm:"-" json:"firstName"`
 	LastName  string    `gorm:"-" json:"lastName"`
 	Role      string    `gorm:"-" json:"role"`
-	Token     string    `json:"token"`
+	Token     string    `json:"token,omitempty"`
 }
 
 func (s *Session) BeforeCreate(tx *gorm.DB) error {

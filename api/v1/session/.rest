@@ -9,5 +9,9 @@ Content-Type: application/json
 }
 ###
 
+GET {{host}}{{url}}/current
+Authorization: Bearer {{token}}
+###
+
 POST {{host}}{{url}}/logout
 Authorization: Bearer {{token}}
