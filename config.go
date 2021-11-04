@@ -24,7 +24,7 @@ func config() error {
 	viper.AddConfigPath(".")
 	if err := viper.MergeInConfig(); err != nil {
 		if _, ok := err.(viper.ConfigFileNotFoundError); ok {
-			return errors.New("./server.yaml not found")
+			return errors.New("./override.yaml not found")
 		} else {
 			return err
 		}
