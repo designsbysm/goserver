@@ -28,12 +28,12 @@ func Serve() error {
 			viper.GetString("ssl.cert"),
 			viper.GetString("ssl.key"),
 		); err != nil {
-			return fmt.Errorf("API %s", err.Error())
+			return fmt.Errorf("API Server %s", err.Error())
 		}
 	}
 
 	if err := router.Run(port); err != nil {
-		return fmt.Errorf("API %s", err.Error())
+		return fmt.Errorf("API Server %s", err.Error())
 	}
 
 	timber.Info("closing API")

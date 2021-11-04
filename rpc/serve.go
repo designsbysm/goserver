@@ -13,7 +13,7 @@ func Serve() error {
 
 	_, err := net.Listen("tcp", port)
 	if err != nil {
-		return fmt.Errorf("RPC %s", err.Error())
+		return fmt.Errorf("RPC Server %s", err.Error())
 	}
 
 	timber.Info(fmt.Sprintf("serving RPC on %s", port))
