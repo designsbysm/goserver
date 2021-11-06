@@ -1,5 +1,6 @@
 .vscode
 logs
 
-/override.yaml
-/server
+coverage.out
+override.yaml
+server
