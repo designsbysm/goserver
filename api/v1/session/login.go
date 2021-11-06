@@ -49,18 +49,21 @@ func login(c *gin.Context) {
 		Role:      user.Role.Name,
 	}
 	if err = session.Upsert(); err != nil {
+		//nolint:errcheck
 		c.AbortWithError(http.StatusInternalServerError, err)
 		return
 	}
 
 	token, err := jwt.Encode(session.ID, *user.Role)
 	if err != nil {
+		//nolint:errcheck
 		c.AbortWithError(http.StatusInternalServerError, err)
 		return
 	}
 
 	session.Token = token
 	if err := session.Upsert(); err != nil {
+		//nolint:errcheck
 		c.AbortWithError(http.StatusInternalServerError, err)
 		return
 	}

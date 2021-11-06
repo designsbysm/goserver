@@ -12,6 +12,7 @@ import (
 func read(c *gin.Context) {
 	id, err := uuid.Parse(c.Param("id"))
 	if err != nil {
+		//nolint:errcheck
 		c.AbortWithError(http.StatusBadRequest, err)
 		return
 	}
@@ -26,6 +27,7 @@ func read(c *gin.Context) {
 			status = http.StatusBadRequest
 		}
 
+		//nolint:errcheck
 		c.AbortWithError(status, err)
 		return
 	}

@@ -23,6 +23,7 @@ func AuthorizeJWT() gin.HandlerFunc {
 
 		id, err := uuid.Parse(claims["id"].(string))
 		if err != nil {
+			//nolint:errcheck
 			c.AbortWithError(http.StatusInternalServerError, err)
 			return
 		}

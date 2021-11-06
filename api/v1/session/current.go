@@ -11,6 +11,7 @@ import (
 func current(c *gin.Context) {
 	data, ok := c.Get("user")
 	if !ok {
+		//nolint:errcheck
 		c.AbortWithError(http.StatusInternalServerError, errors.New("missing user data"))
 		return
 	}

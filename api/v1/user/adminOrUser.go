@@ -18,6 +18,7 @@ func adminOrUser() gin.HandlerFunc {
 		user := data.(database.User)
 
 		if err := user.Read(database.PreloadRole); err != nil {
+			//nolint:errcheck
 			c.AbortWithError(http.StatusForbidden, err)
 			return
 		} else if user.Role.IsAdmin {
@@ -26,11 +27,13 @@ func adminOrUser() gin.HandlerFunc {
 
 		id, err := uuid.Parse(c.Param("id"))
 		if err != nil {
+			//nolint:errcheck
 			c.AbortWithError(http.StatusBadRequest, err)
 			return
 		}
 
 		if user.ID != id {
+			//nolint:errcheck
 			c.AbortWithStatus(http.StatusForbidden)
 			return
 		}

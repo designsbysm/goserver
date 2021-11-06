@@ -17,6 +17,7 @@ func AuthorizeAdmin() gin.HandlerFunc {
 		user := data.(database.User)
 
 		if err := user.Read(database.PreloadRole); err != nil {
+			//nolint:errcheck
 			c.AbortWithError(http.StatusForbidden, err)
 			return
 		} else if !user.Role.IsAdmin {

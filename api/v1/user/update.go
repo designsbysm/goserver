@@ -12,6 +12,7 @@ import (
 func update(c *gin.Context) {
 	id, err := uuid.Parse(c.Param("id"))
 	if err != nil {
+		//nolint:errcheck
 		c.AbortWithError(http.StatusBadRequest, err)
 		return
 	}
@@ -26,6 +27,7 @@ func update(c *gin.Context) {
 			status = http.StatusBadRequest
 		}
 
+		//nolint:errcheck
 		c.AbortWithError(status, err)
 		return
 	}
@@ -33,6 +35,7 @@ func update(c *gin.Context) {
 
 	err = c.BindJSON(&user)
 	if err != nil {
+		//nolint:errcheck
 		c.AbortWithError(http.StatusBadRequest, err)
 		return
 	}
@@ -42,6 +45,7 @@ func update(c *gin.Context) {
 			ID: user.RoleID,
 		}
 		if err := role.Read(); err != nil {
+			//nolint:errcheck
 			c.AbortWithError(http.StatusInternalServerError, err)
 			return
 		}
@@ -51,6 +55,7 @@ func update(c *gin.Context) {
 
 	err = user.Update()
 	if err != nil {
+		//nolint:errcheck
 		c.AbortWithError(http.StatusInternalServerError, err)
 		return
 	}

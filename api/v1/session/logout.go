@@ -11,6 +11,7 @@ import (
 func logout(c *gin.Context) {
 	data, ok := c.Get("user")
 	if !ok {
+		//nolint:errcheck
 		c.AbortWithError(http.StatusInternalServerError, errors.New("missing user data"))
 		return
 	}
@@ -21,6 +22,7 @@ func logout(c *gin.Context) {
 		Token:  "",
 	}
 	if err := session.Upsert(); err != nil {
+		//nolint:errcheck
 		c.AbortWithError(http.StatusInternalServerError, err)
 		return
 	}

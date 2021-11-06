@@ -12,6 +12,7 @@ func list(c *gin.Context) {
 
 	list, err := user.List(database.PreloadRole)
 	if err != nil {
+		//nolint:errcheck
 		c.AbortWithError(http.StatusInternalServerError, err)
 		return
 	}

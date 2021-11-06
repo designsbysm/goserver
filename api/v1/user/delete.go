@@ -11,6 +11,7 @@ import (
 func delete(c *gin.Context) {
 	id, err := uuid.Parse(c.Param("id"))
 	if err != nil {
+		//nolint:errcheck
 		c.AbortWithError(http.StatusBadRequest, err)
 		return
 	}
@@ -20,6 +21,7 @@ func delete(c *gin.Context) {
 	}
 	err = user.Delete()
 	if err != nil {
+		//nolint:errcheck
 		c.AbortWithError(http.StatusInternalServerError, err)
 		return
 	}

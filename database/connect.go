@@ -20,22 +20,26 @@ func Connect() (err error) {
 		return
 	}
 
-	DB.AutoMigrate(
+	if err := DB.AutoMigrate(
 		&Role{},
 		&Setting{},
 		&User{},
 		&Session{},
-	)
+	); err != nil {
+		return err
+	}
 	populateDB()
 
-	DB.AutoMigrate(
+	if err := DB.AutoMigrate(
 		&incident.InIncident{},
 		&incident.InMember{},
 		&incident.InMemberLevel{},
 		&incident.InPatient{},
 		&incident.InPCR{},
 		&incident.InUnit{},
-	)
+	); err != nil {
+		return err
+	}
 
 	return
 }
