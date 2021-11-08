@@ -10,13 +10,14 @@ import (
 
 func Serve() error {
 	port := viper.GetString("rpc.port")
+	protocol := viper.GetString("rpc.protocol")
 
 	_, err := net.Listen("tcp", port)
 	if err != nil {
 		return fmt.Errorf("RPC: %s", err.Error())
 	}
 
-	timber.Info(fmt.Sprintf("RPC: serving on %s", port))
+	timber.Info(fmt.Sprintf("RPC: serving %s on %s", protocol, port))
 
 	// s := grpc.NewServer()
 	// pb.RegisterGreeterServer(s, &server{})

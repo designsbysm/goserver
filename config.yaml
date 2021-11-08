@@ -9,6 +9,7 @@ gorm:
   level: 3
 rpc:
   port: :5010
+  protocol: HTTP
 ssl:
   cert: cert.pem
   key: key.pem
