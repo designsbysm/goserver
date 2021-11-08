@@ -18,8 +18,8 @@ func TestEncode(t *testing.T) {
 	token, err := Encode(uuid, role)
 
 	if err != nil {
-		t.Error(err)
+		t.Errorf("should be empty, got %v", err)
 	} else if token == "" {
-		t.Error("empty token")
+		t.Errorf("should not be empty, got nil")
 	}
 }

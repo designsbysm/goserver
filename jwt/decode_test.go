@@ -19,9 +19,9 @@ func TestDecode(t *testing.T) {
 	claims, err := Decode(token)
 
 	if err != nil {
-		t.Error(err)
+		t.Errorf("should be empty, got %v", err)
 	} else if claims == nil {
-		t.Error("empty claims")
+		t.Errorf("should not be empty, got nil")
 	}
 }
 
@@ -29,9 +29,9 @@ func TestEmptyToken(t *testing.T) {
 	claims, err := Decode("")
 
 	if err == nil {
-		t.Error("empty err")
+		t.Errorf("should not be empty, got nil")
 	} else if claims != nil {
-		t.Errorf("claims should be empty: got %v", claims)
+		t.Errorf("should be empty, got %v", claims)
 	}
 }
 
