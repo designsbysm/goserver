@@ -1,5 +1,9 @@
 @url = /api/v1/session
 
+GET {{host}}{{url}}/current
+Authorization: Bearer {{token}}
+###
+
 POST {{host}}{{url}}/login
 Content-Type: application/json
 
@@ -7,10 +11,6 @@ Content-Type: application/json
   "email": "scott{{domain}}",
   "password": "{{password}}"
 }
-###
-
-GET {{host}}{{url}}/current
-Authorization: Bearer {{token}}
 ###
 
 POST {{host}}{{url}}/logout

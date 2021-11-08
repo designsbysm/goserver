@@ -19,7 +19,7 @@ func Serve() error {
 	protocol := viper.GetString("api.protocol")
 
 	if viper.GetBool("gin.release") {
-		timber.Info(fmt.Sprintf("serving API on %s", port))
+		timber.Info(fmt.Sprintf("API: serving %s on %s", protocol, port))
 	}
 
 	if protocol == "HTTPS" {
@@ -28,15 +28,15 @@ func Serve() error {
 			viper.GetString("ssl.cert"),
 			viper.GetString("ssl.key"),
 		); err != nil {
-			return fmt.Errorf("API Server %s", err.Error())
+			return fmt.Errorf("API: %s", err.Error())
 		}
 	}
 
 	if err := router.Run(port); err != nil {
-		return fmt.Errorf("API Server %s", err.Error())
+		return fmt.Errorf("API: %s", err.Error())
 	}
 
-	timber.Info("closing API")
+	timber.Info("API: closing")
 
 	return nil
 }

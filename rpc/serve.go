@@ -13,10 +13,10 @@ func Serve() error {
 
 	_, err := net.Listen("tcp", port)
 	if err != nil {
-		return fmt.Errorf("RPC Server %s", err.Error())
+		return fmt.Errorf("RPC: %s", err.Error())
 	}
 
-	timber.Info(fmt.Sprintf("serving RPC on %s", port))
+	timber.Info(fmt.Sprintf("RPC: serving on %s", port))
 
 	// s := grpc.NewServer()
 	// pb.RegisterGreeterServer(s, &server{})
@@ -25,7 +25,7 @@ func Serve() error {
 	// 	log.Fatalf("failed to serve: %v", err)
 	// }
 
-	timber.Info("closing RPC")
+	timber.Info("RPC: closing")
 
 	return nil
 }
