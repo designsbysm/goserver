@@ -1,6 +1,6 @@
 .vscode
 logs
 
+config.yaml
 coverage.out
-override.yaml
 server
