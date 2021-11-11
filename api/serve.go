@@ -15,24 +15,26 @@ func Serve() error {
 	AddRoute(router)
 	client.AddRoute(router)
 
-	port := viper.GetString("api.port")
-	protocol := viper.GetString("api.protocol")
+	address := viper.GetString("api.address")
+	tls := viper.GetBool("api.tls")
 
 	if viper.GetBool("gin.release") {
-		timber.Info(fmt.Sprintf("API: serving %s on %s", protocol, port))
+		security := "HTTP"
+		if tls {
+			security = " (HTTPS)"
+		}
+		timber.Info(fmt.Sprintf("API: listening on %s%s", address, security))
 	}
 
-	if protocol == "HTTPS" {
+	if tls {
 		if err := router.RunTLS(
-			port,
+			address,
 			viper.GetString("ssl.cert"),
 			viper.GetString("ssl.key"),
 		); err != nil {
 			return fmt.Errorf("API: %s", err.Error())
 		}
-	}
-
-	if err := router.Run(port); err != nil {
+	} else if err := router.Run(address); err != nil {
 		return fmt.Errorf("API: %s", err.Error())
 	}
 
