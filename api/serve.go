@@ -2,6 +2,9 @@ package api
 
 import (
 	"fmt"
+	"os"
+	"os/signal"
+	"syscall"
 
 	"github.com/designsbysm/server-go/client"
 
@@ -10,7 +13,8 @@ import (
 	"github.com/spf13/viper"
 )
 
-func Serve() error {
+func Serve() {
+	// create
 	router := gin.New()
 	AddRoute(router)
 	client.AddRoute(router)
@@ -18,27 +22,37 @@ func Serve() error {
 	address := viper.GetString("api.address")
 	tls := viper.GetBool("api.tls")
 
+	// run
+	go func() {
+		if tls {
+			if err := router.RunTLS(
+				address,
+				viper.GetString("ssl.cert"),
+				viper.GetString("ssl.key"),
+			); err != nil {
+				timber.Error("API:", err)
+			}
+		} else if err := router.Run(address); err != nil {
+			timber.Error("API:", err)
+		}
+	}()
+
+	// notify
 	if viper.GetBool("gin.release") {
 		security := "HTTP"
 		if tls {
-			security = " (HTTPS)"
+			security = "HTTPS"
 		}
-		timber.Info(fmt.Sprintf("API: listening on %s%s", address, security))
+
+		timber.Info(fmt.Sprintf("API: listening on %s (%s)", address, security))
 	}
 
-	if tls {
-		if err := router.RunTLS(
-			address,
-			viper.GetString("ssl.cert"),
-			viper.GetString("ssl.key"),
-		); err != nil {
-			return fmt.Errorf("API: %s", err.Error())
-		}
-	} else if err := router.Run(address); err != nil {
-		return fmt.Errorf("API: %s", err.Error())
-	}
+	// wait for ^c
+	ch := make(chan os.Signal, 1)
+	signal.Notify(ch, syscall.SIGINT, syscall.SIGTERM)
+	<-ch
 
-	timber.Info("API: closing")
-
-	return nil
+	// close
+	fmt.Println("")
+	timber.Info("API: closed")
 }
