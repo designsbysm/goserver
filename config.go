@@ -3,7 +3,6 @@ package main
 import (
 	"errors"
 	"flag"
-	"fmt"
 
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
@@ -21,20 +20,15 @@ func config() error {
 	}
 
 	// cli flags
-	var port int
-	var https bool
+	address := viper.GetString("api.address")
+	tls := viper.GetBool("api.tls")
 
-	flag.IntVar(&port, "port", 0, "server port")
-	flag.BoolVar(&https, "https", false, "user HTTPS")
+	flag.StringVar(&address, "address", address, "api address")
+	flag.BoolVar(&tls, "tls", tls, "use TLS")
 	flag.Parse()
 
-	if port > 0 {
-		viper.Set("server.port", fmt.Sprintf(":%d", port))
-	}
-
-	if https {
-		viper.Set("server.protocol", "HTTPS")
-	}
+	viper.Set("api.address", address)
+	viper.Set("api.tls", tls)
 
 	// setup stuff
 	if viper.GetBool("gin.release") {
