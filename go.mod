@@ -16,10 +16,10 @@ require (
 	github.com/gin-gonic/gin v1.7.7
 	github.com/google/uuid v1.3.0
 	github.com/spf13/viper v1.10.1
-	golang.org/x/crypto v0.0.0-20220208050332-20e1d8d225ab
-	gorm.io/datatypes v1.0.5
-	gorm.io/driver/postgres v1.2.3
-	gorm.io/gorm v1.22.5
+	golang.org/x/crypto v0.0.0-20220214200702-86341886e292
+	gorm.io/datatypes v1.0.6
+	gorm.io/driver/postgres v1.3.1
+	gorm.io/gorm v1.23.2
 )
 
 require (
@@ -43,7 +43,7 @@ require (
 	github.com/jinzhu/now v1.1.4 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/leodido/go-urn v1.2.1 // indirect
-	github.com/magiconair/properties v1.8.5 // indirect
+	github.com/magiconair/properties v1.8.6 // indirect
 	github.com/mattn/go-isatty v0.0.14 // indirect
 	github.com/mitchellh/mapstructure v1.4.3 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
@@ -54,13 +54,11 @@ require (
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/subosito/gotenv v1.2.0 // indirect
-	github.com/ugorji/go/codec v1.2.6 // indirect
-	golang.org/x/sys v0.0.0-20220207234003-57398862261d // indirect
+	github.com/ugorji/go/codec v1.2.7 // indirect
+	golang.org/x/sys v0.0.0-20220227234510-4e6760a101f9 // indirect
 	golang.org/x/text v0.3.7 // indirect
 	google.golang.org/protobuf v1.27.1 // indirect
-	gopkg.in/ini.v1 v1.66.3 // indirect
+	gopkg.in/ini.v1 v1.66.4 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
-	gorm.io/driver/mysql v1.2.3 // indirect
-	gorm.io/driver/sqlite v1.2.6 // indirect
-	gorm.io/driver/sqlserver v1.2.1 // indirect
+	gorm.io/driver/mysql v1.3.2 // indirect
 )
