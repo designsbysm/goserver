@@ -6,18 +6,15 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/designsbysm/server-go/client"
-
 	"github.com/designsbysm/timber/v2"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
 )
 
 func Serve() {
-	// create
 	router := gin.New()
 	AddRoute(router)
-	client.AddRoute(router)
+	// client.AddRoute(router)
 
 	address := viper.GetString("api.address")
 	tls := viper.GetBool("api.tls")
