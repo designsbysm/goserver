@@ -10,6 +10,6 @@ import (
 func AddRoute(r *gin.RouterGroup) {
 	group := r.Group("/server")
 	{
-		group.GET("/", middleware.AuthorizeJWT(), server)
+		group.GET("", middleware.AuthorizeJWT(), server)
 	}
 }

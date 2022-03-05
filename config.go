@@ -19,6 +19,9 @@ func config() error {
 		}
 	}
 
+	// env variables
+	viper.BindEnv("URL_FRONTEND")
+
 	// cli flags
 	address := viper.GetString("api.address")
 	tls := viper.GetBool("api.tls")

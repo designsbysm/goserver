@@ -3,4 +3,4 @@ logs
 
 config.yaml
 coverage.out
-server
+/server

@@ -13,8 +13,8 @@ import (
 
 func Serve() {
 	router := gin.New()
+	addCORS(router)
 	AddRoute(router)
-	// client.AddRoute(router)
 
 	address := viper.GetString("api.address")
 	tls := viper.GetBool("api.tls")
