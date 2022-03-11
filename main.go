@@ -4,15 +4,16 @@ package main
 
 import (
 	"github.com/designsbysm/server-go/api"
+	"github.com/designsbysm/server-go/config"
 	"github.com/designsbysm/server-go/database"
 )
 
 func main() {
-	if err := config(); err != nil {
+	if err := config.Environment(); err != nil {
 		panic(err)
 	}
 
-	if err := loggers(); err != nil {
+	if err := config.Loggers(); err != nil {
 		panic(err)
 	}
 

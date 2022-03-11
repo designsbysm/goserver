@@ -1,4 +1,4 @@
-package main
+package config
 
 import (
 	"errors"
@@ -8,8 +8,7 @@ import (
 	"github.com/spf13/viper"
 )
 
-func config() error {
-	viper.SetConfigName("config")
+func Environment() error {
 	viper.AddConfigPath(".")
 	if err := viper.ReadInConfig(); err != nil {
 		if _, ok := err.(viper.ConfigFileNotFoundError); ok {

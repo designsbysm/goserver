@@ -1,4 +1,4 @@
-package main
+package config
 
 import (
 	"os"
@@ -9,7 +9,7 @@ import (
 	"github.com/spf13/viper"
 )
 
-func loggers() error {
+func Loggers() error {
 	if err := cli(); err != nil {
 		return err
 	}
