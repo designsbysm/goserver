@@ -15,7 +15,7 @@ func Connect() (err error) {
 	connection := viper.GetString("URL_DATABASE")
 	if connection == "" {
 		user := viper.GetString("POSTGRES_USER")
-		password := viper.GetString("POSTGRES_USER")
+		password := viper.GetString("POSTGRES_PASSWORD")
 		port := viper.GetString("PORT_POSTGRES")
 		db := viper.GetString("POSTGRES_DB")
 
