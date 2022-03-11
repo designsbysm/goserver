@@ -3,12 +3,14 @@ package config
 import (
 	"errors"
 	"flag"
+	"os"
 
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
 )
 
 func Environment() error {
+	// load config.yaml
 	viper.AddConfigPath(".")
 	if err := viper.ReadInConfig(); err != nil {
 		if _, ok := err.(viper.ConfigFileNotFoundError); ok {
@@ -18,8 +20,18 @@ func Environment() error {
 		}
 	}
 
+	// load .env
+	file, err := os.Open("../.env")
+	if err == nil {
+		defer file.Close()
+
+		viper.SetConfigType("env")
+		viper.MergeConfig(file)
+	}
+
 	// env variables
 	viper.BindEnv("URL_FRONTEND")
+	viper.BindEnv("URL_DATABASE")
 
 	// cli flags
 	address := viper.GetString("api.address")
