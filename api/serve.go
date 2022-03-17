@@ -13,6 +13,7 @@ import (
 
 func Serve() {
 	router := gin.New()
+	router.RedirectTrailingSlash = false
 	addCORS(router)
 	AddRoute(router)
 

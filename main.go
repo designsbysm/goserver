@@ -21,6 +21,5 @@ func main() {
 		panic(err)
 	}
 
-	// run each server
 	api.Serve()
 }

@@ -19,8 +19,8 @@ func addCORS(r *gin.Engine) {
 		// AllowAllOrigins: true,
 		AllowOrigins:     []string{client},
 		AllowCredentials: true,
-		AllowHeaders:     []string{"Origin", "Content-Length", "Content-Type", "User-Agent", "Referrer", "Host", "Authorization"},
-		AllowMethods:     []string{"GET", "POST", "OPTIONS", "PUT"},
+		AllowHeaders:     []string{"Authorization", "Content-Length", "Content-Type", "Host", "Referrer", "Origin", "User-Agent"},
+		AllowMethods:     []string{"DELETE", "GET", "POST", "OPTIONS", "PUT"},
 		ExposeHeaders:    []string{"Content-Length"},
 		MaxAge:           12 * time.Hour,
 	}))
